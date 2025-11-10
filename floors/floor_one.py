@@ -1,4 +1,4 @@
-import choices as choose
+import functions.choices as choose
 # tests to make sure this works as it should
 choose.two_options("Yes or no? ", "yes", "no", "You said yes!", "You said no!", "Try that again.")
 
