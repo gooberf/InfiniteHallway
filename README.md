@@ -1,1 +1,8 @@
-Not really a game, it's more an interactive experience that I work on in my free-time to improve my Python understanding. There really is no end-goal, but feel free to give feedback to this silly thing.
+# Infinite Hallway
+
+## Introduction
+cool interactive experience used by a few guys to improve their understanding of the Python language.
+
+# How To Play
+
+do i really have to tell you?
