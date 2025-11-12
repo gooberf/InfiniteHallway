@@ -1,5 +1,15 @@
-from ..functions import inventory as inv
-from ..functions import choices as choose
+import random
+import functions.inventory as inv
+import functions.choices as choose
+import os
+
+if os.path.exists("LLMsEnabled"):
+    with open("LLMsEnabled", "r") as file:
+        data = file.read()
+    if data == "1":
+        LLMsEnabled = True
+    else:
+        LLMsEnabled = False
 
 inventory = []
 
@@ -10,5 +20,9 @@ possible_rooms = [
     "It's bright. The room is loud aswell. It overwhelms you."
 ]
 
-def floor_one(inventory):
-    choose.two_options("Do you want to go left or right?")
+def floor_one():
+    while True:
+        choice = choose.two_options("Do you want to go left or right?", "left", "right", "you go left", )
+        current_index = random.randint(0, len(possible_rooms) - 1)
+        current_room = possible_rooms[current_index]
+        pass

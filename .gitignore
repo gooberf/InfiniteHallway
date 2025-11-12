@@ -1,1 +1,6 @@
 *.pyc
+*.log
+functions/__pycache__/
+functions/invHelper/__pycache__/
+functions/invHelper/*.log
+LLMsEnabled
