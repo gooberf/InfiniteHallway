@@ -20,7 +20,13 @@ def floor_two(inventory):
                 continue
             elif choice == "left":
                 print(f"You enter the room on your left.\n{possible_rooms[0]}")
-                continue 
+                choice = cho.two_options("Do you want to look around the room?", "yes", "no")
+                if choice == "yes":
+                    print("You look around the room, examining every last nook and cranny of it.\n You find nothing of interest yet.") # come back with a certain item, and smth else will happen (just an idea)
+                    continue
+                elif choice == "no":
+                    print("You turn back around and leave the room, not really caring about what is inside.")
+                    continue
             elif choice == "right":
                 print(f"You enter the room on your right. \n{possible_rooms[3]}")
                 continue # work on this one second
