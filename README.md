@@ -46,7 +46,8 @@ If you want to be asked again whether or not to enable LLMs, delete the `LLMsEna
 - `config/` - persistent configuration storage (auto-created on first run)
   - `LLMsEnabled` - tracks LLM enablement status
   - `model` - stores the selected Ollama model name
-
+-# btw we are not liable for any storage space that is taken up. the easy mode is a lie. you have been warned
+ - you brought this on yourself if you accept easy_mode.
 ## Contributing
 
 This is a small, informal project — contributions and experiments are welcome.
@@ -60,3 +61,4 @@ This is a small, informal project — contributions and experiments are welcome.
 This repository does not include a license file. If you plan to share or publish, add a LICENSE that matches how you want others to use your code.
 
 Enjoy exploring the Infinite Hallway!
+
