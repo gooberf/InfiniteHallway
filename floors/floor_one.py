@@ -21,4 +21,10 @@ def floor_one():
         choice = choose.two_options("Would you like to look around?", "yes", "no")
         if choice == "yes" and current_index == 0 and "Rusted Axe" not in inventory:
             print("You find an axe lying on the floor.\nIt's covered in rust")
-            print()
+            print(f"You now have {inventory} in your inventory :)")
+            print("You leave the room.")
+            continue
+        elif choice == "yes" and current_index == 0 and "Rusted Axe" in inventory:
+            pass
+        elif choice =="yes" and current_index == 1 and "Old Key" not in inventory:
+            print("You ")
