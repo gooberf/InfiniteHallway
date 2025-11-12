@@ -4,6 +4,7 @@ import os
 import ollama
 import time
 import functions.deleteConfig as delConfig
+import floors.floor_two as f2
 
 if os.name == 'nt':
     os.system('cls')
@@ -89,3 +90,5 @@ elif mainMenuOption == "reset config":
     exit()
 
 inventory = f1.floor_one()
+
+inventory = f2.floor_two(inventory)
