@@ -48,7 +48,31 @@ if not os.path.exists("config/LLMsEnabled"):
     else:
         with open("config/LLMsEnabled", "w") as f:
             f.write("0")
-time.sleep(2)
 
+if os.path.exists("config/LLMsEnabled"):
+    with open("config/LLMsEnabled", "r") as f:
+        status = f.read().strip()
+    if status == "1":
+        print("Testing Ollama connection...")
+        with open("config/model", "r") as mf:
+            model = mf.read().strip()
+        try:
+            test_response = ollama.chat(model=model, messages=[{'role': 'user', 'content': 'Hello!'}])
+            print("Ollama is connected and ready to use AI features.")
+        except Exception as e:
+            print(f"Failed to connect to Ollama: {e}")
+            delConfirm = choose.two_options("Would you like to delete all LLM related data, or, keep it?", "delete","keep")
+            if delConfirm == "delete":
+                os.remove("config/LLMsEnabled")
+                os.remove("config/model")
+                print("LLM configuration deleted. Please restart the program to set up again.")
+                exit()
+            else:
+                print("Keeping existing configuration. Exiting...")
+                exit()
+    else:
+        print("Ollama AI features are disabled.\nYou can enable them by deleting the 'config/LLMsEnabled' file and restarting the program.")
+
+time.sleep(2)
 
 inventory = f1.floor_one()
