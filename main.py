@@ -82,6 +82,10 @@ if os.path.exists("config/LLMsEnabled"):
 time.sleep(2)
 
 mainMenuOption = choose.two_options("main menu placeholder", "start", "reset config")
+if os.name == 'nt':
+    os.system('cls')
+else:
+    os.system('clear')
 if mainMenuOption == "start":
     pass
 elif mainMenuOption == "reset config":
