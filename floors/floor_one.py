@@ -1,5 +1,5 @@
-from ..functions import inventory as inv
-from ..functions import choices as choose
+import functions.inventory as inv
+import functions.choices as choose
 
 inventory = []
 
@@ -10,5 +10,5 @@ possible_rooms = [
     "It's bright. The room is loud aswell. It overwhelms you."
 ]
 
-def floor_one(inventory):
+def floor_one():
     choose.two_options("Do you want to go left or right?")
