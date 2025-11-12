@@ -1,7 +1,7 @@
 from ..functions import inventory as inv
 from ..functions import choices as choose
 
-inventory = ["key", "rope", "Suspiciously human shaped ceiling decoration", "Sayori"]
+inventory = []
 
 possible_rooms = [  
     "The room is dark and smells faintly of rust.",
@@ -10,10 +10,5 @@ possible_rooms = [
     "It's bright. The room is loud aswell. It overwhelms you."
 ]
 
-blahblahblah = inv.cha("key", "rem", "You lost teh key ): nooo", inventory)
-inventory = blahblahblah
-
-print(inventory)
-
-def floor_one():
-    pass
+def floor_one(inventory):
+    choose.two_options("Do you want to go left or right?")
