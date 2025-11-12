@@ -1,6 +1,13 @@
 import random
 import functions.inventory as inv
 import functions.choices as choose
+import os
+
+if os.path.exists("LLMsEnabled"):
+    LLMsEnabled = True
+else:
+    LLMsEnabled = False
+print(LLMsEnabled)
 
 inventory = []
 
