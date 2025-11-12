@@ -4,10 +4,12 @@ import functions.choices as choose
 import os
 
 if os.path.exists("LLMsEnabled"):
-    LLMsEnabled = True
-else:
-    LLMsEnabled = False
-print(LLMsEnabled)
+    with open("LLMsEnabled", "r") as file:
+        data = file.read()
+    if data == "1":
+        LLMsEnabled = True
+    else:
+        LLMsEnabled = False
 
 inventory = []
 

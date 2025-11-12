@@ -19,6 +19,8 @@ if not os.path.exists("LLMsEnabled"):
             file.write("1")
     else:
         print("LLMs disabled")
+        with open("LLMsEnabled", "w") as file:
+            file.write("0")
 
 
 inventory = f1.floor_one()
