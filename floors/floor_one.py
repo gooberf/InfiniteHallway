@@ -69,7 +69,7 @@ def floor_one():
             elif choice == "no":
                 print("You leave the ladder where it is, deciding not to try and grab it.\nYou leave the room.")
                 continue
-        elif current_index == 2 and "Ladder" in inventory or current_index == 2 and bought_key:
+        elif current_index == 2 and "Ladder" in inventory and choice == "yes" or current_index == 2 and bought_key and choice == "yes":
             print("You enter the room, the pool of water still on the floor.\nThis time, you notice that a pipe is dripping water into the pool...\nThat's new.\nYou don't pay any mind to it and go back to the hallway, with nothing left to do here.")
             continue
         elif current_index == 2 and choice == "no":
