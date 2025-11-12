@@ -20,13 +20,20 @@ def floor_two(inventory):
                 continue
             elif choice == "left":
                 print(f"You enter the room on your left.\n{possible_rooms[0]}")
+                continue 
             elif choice == "right":
                 print(f"You enter the room on your right. \n{possible_rooms[3]}")
+                continue # work on this one second
         elif ver_pos == 1:
             choice = cho.three_options("Move down the hall, into the room on your right, or into the room on your left?", "down", "left", "right")
             if choice == "down":
                 ver_pos += -1
                 print("You go back down the hall")
                 continue
-
+            elif choice == "left":
+                print(f"You enter the room on your left.\n{possible_rooms[2]}")
+                continue # work on this one third
+            elif choice == "right":
+                print(f"You enter the room on your right.\n{possible_rooms[1]}")
+                continue # work on this one last
        
