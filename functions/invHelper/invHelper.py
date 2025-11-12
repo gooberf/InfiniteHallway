@@ -16,6 +16,6 @@ possibleLogs = [
 
 def invHelper():
     while True:
-        with open('latest.log', 'a') as log_file:
+        with open('functions/invHelper/latest.log', 'a') as log_file:
             choice = random.choice(possibleLogs)
             log_file.write(choice + '\n')
