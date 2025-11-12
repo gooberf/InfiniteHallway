@@ -1,1 +1,0 @@
-For savedata, have it be a string of numbers, 1 or 0, each number meaning something different. E.X, 01000111 could mean floor 1, items are key, axe, etc.

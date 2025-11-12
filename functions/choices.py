@@ -1,4 +1,5 @@
 import colorama
+import os
 from colorama import Fore, Style
 import functions.clear_terminal as clear_term
 # a function to give the player 2 options
@@ -33,6 +34,7 @@ def four_options(text, option1, option2, option3, option4, error_message, input_
             return picked_option
         else:
             print(error_message)
+        
 def three_options(text, option1, option2, option3, error_message="Invalid", input_func=input):
     while True:
         picked_option = input_func(f'--------------------------------\n{text}\n------\n{option1}\n{option2}\n{option3}\n--------------------------------\n').lower()

@@ -4,11 +4,19 @@ import os
 import ollama
 import time
 import functions.deleteConfig as delConfig
+import floors.floor_two as f2
+import functions.easyMode as em
+
+inventory = []
 
 if os.name == 'nt':
     os.system('cls')
 else:
     os.system('clear')
+
+if os.path.exists("config") == False:
+    os.mkdir("config")
+
 if not os.path.exists("config/LLMsEnabled"):
     ai_option = choose.two_options("Would you like to enable the usage of Ollama for AI responses?", "yes", "no")
 
@@ -72,11 +80,44 @@ if os.path.exists("config/LLMsEnabled"):
                 print("Keeping existing configuration. Exiting...")
                 exit()
     else:
-        print("Ollama AI features are disabled.\nYou can enable them by deleting the 'config/LLMsEnabled' file and restarting the program.")
+        print("Ollama AI features are disabled.\nYou can change this by selecting 'reset config' in the main menu.")
 
 time.sleep(2)
 
+
+if os.name == 'nt':
+    os.system('cls')
+else:
+    os.system('clear')
+
+if not os.path.exists("config/easyMode"):
+    easy_mode_choice = choose.two_options("Would you like to enable Easy Mode?", "yes", "no")
+    if easy_mode_choice == "yes":
+        with open("config/easyMode", "w") as ef:
+            ef.write("1")
+        em.start_easy_mode_background()
+    else:
+        with open("config/easyMode", "w") as ef:
+            ef.write("0")
+elif os.path.exists("config/easyMode"):
+    with open("config/easyMode", "r") as ef:
+        easy_status = ef.read().strip()
+    if easy_status == "1":
+        print("Easy Mode is enabled.")
+        time.sleep(2)
+        em.start_easy_mode_background()
+    else:
+        pass
+
+
+if os.name == 'nt':
+    os.system('cls')
+else:
+    os.system('clear')
+    
 mainMenuOption = choose.two_options("main menu placeholder", "start", "reset config")
+    
+
 if mainMenuOption == "start":
     pass
 elif mainMenuOption == "reset config":
@@ -85,3 +126,5 @@ elif mainMenuOption == "reset config":
     exit()
 
 inventory = f1.floor_one()
+
+inventory = f2.floor_two(inventory)
