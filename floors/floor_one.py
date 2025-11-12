@@ -1,6 +1,6 @@
 import random
 import functions.choices as choose
-
+import ollama
 inventory = []
 
 possible_rooms = [  
@@ -9,6 +9,15 @@ possible_rooms = [
     "There is a soft hum from exposed wires on the ground.",
     "It's bright. The room is loud aswell. It overwhelms you."
 ]
+
+with open("config/LLMsEnabled", "r") as ef:
+    status = ef.read()
+if status.strip() == "1":
+    ai_enabled = True
+    with open("config/model", "r") as mf:
+        model = mf.read()
+else:
+    ai_enabled = False
 
 door_open = False
 
@@ -31,26 +40,32 @@ def floor_one():
         elif choice == "yes" and current_index == 0 and "Rusted Axe" in inventory:
             print("You enter again.\nThe room looks just like it did when you left it.\nYou check around the room again, the axe that was there didn't magically reappear.")
         elif choice == "yes" and current_index == 1 and not bought_key:
-            print("You look around the room and see... someone\n-----Merchant-----\nOh, hello wanderer! I didn't think another unfortunate soul would end up here...")
-            choice = choose.two_options("-----Merchant-----\nWould you like to look at my wares?", "yes", "no")
-            if choice == "yes":
-                print("-----Merchant-----\nItem: Old Key\nCost: Ladder\n-----Merchant-----\nThis is all I have as of now, wanderer.")
-                choice = choose.two_options("-----Merchant-----\nBuy the Key?", "yes", "no")
-                if choice == "yes" and "Ladder" in inventory:
-                    inventory.remove("Ladder")
-                    inventory.append("Old Key")
-                    print(f"You bought an old key!\nYou now have {inventory} in your inventory!")
-                    bought_key = True
-                    continue
-                elif choice == "yes" and "Ladder" not in inventory:
-                    print("-----Merchant-----\nThis isn't a charity! Leave!\nThe merchant swiftly kicks you out. Maybe return when you have what they want.")
-                    continue
+            if ai_enabled:
+                # TODO make the conversation with the merchant work
+                response = ollama.chat(model=model, messages=[{'role': 'user', 'content': 'Talk to the player as a mysterious merchant trapped in a strange building. Describe yourself and your wares in detail, making it intriguing and fitting for a fantasy setting.'}])
+                merchant_description = response['choices'][0]['message']['content']
+                print(f"You look around the room and see... someone\n-----Merchant-----\n{merchant_description}")
+            else:
+                print("You look around the room and see... someone\n-----Merchant-----\nOh, hello wanderer! I didn't think another unfortunate soul would end up here...")
+                choice = choose.two_options("-----Merchant-----\nWould you like to look at my wares?", "yes", "no")
+                if choice == "yes":
+                    print("-----Merchant-----\nItem: Old Key\nCost: Ladder\n-----Merchant-----\nThis is all I have as of now, wanderer.")
+                    choice = choose.two_options("-----Merchant-----\nBuy the Key?", "yes", "no")
+                    if choice == "yes" and "Ladder" in inventory:
+                        inventory.remove("Ladder")
+                        inventory.append("Old Key")
+                        print(f"You bought an old key!\nYou now have {inventory} in your inventory!")
+                        bought_key = True
+                        continue
+                    elif choice == "yes" and "Ladder" not in inventory:
+                        print("-----Merchant-----\nThis isn't a charity! Leave!\nThe merchant swiftly kicks you out. Maybe return when you have what they want.")
+                        continue
+                    elif choice == "no":
+                        print("-----Merchant-----\nAlright then, wanderer. Safe travels.\nYou leave the room, heading back to the hallway")
+                        continue
                 elif choice == "no":
                     print("-----Merchant-----\nAlright then, wanderer. Safe travels.\nYou leave the room, heading back to the hallway")
                     continue
-            elif choice == "no":
-                print("-----Merchant-----\nAlright then, wanderer. Safe travels.\nYou leave the room, heading back to the hallway")
-                continue
         elif choice == "yes" and current_index == 1 and bought_key:
             print("You walk into the room, but the merchant isn't here.\nYou wonder where they went before heading back to the hallway.")
             continue
