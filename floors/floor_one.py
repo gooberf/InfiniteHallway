@@ -23,6 +23,7 @@ def floor_one():
         print(current_room)
         choice = choose.two_options("Would you like to look around?", "yes", "no")
         if choice == "yes" and current_index == 0 and "Rusted Axe" not in inventory:
+            inventory.append("Rusted Axe")
             print(f"You find an axe lying on the floor.\nIt's covered in rust\nYou now have {inventory} in your inventory :)")
             print("You leave the room")
             continue
@@ -67,7 +68,7 @@ def floor_one():
         elif current_index == 2 and "Ladder" in inventory or current_index == 2 and bought_key:
             print("You enter the room, the pool of water still on the floor.\nThis time, you notice that a pipe is dripping water into the pool...\nThat's new.\nYou don't pay any mind to it and go back to the hallway, with nothing left to do here.")
             continue
-        elif current_index == 3:
+        elif current_index == 3 and choice == "yes":
             print("You notice a door that hides in the walls perfectly.")
             choice = choose.two_options("Do you open it?", "yes", "no")
             if choice == "yes":
@@ -110,6 +111,6 @@ def floor_one():
                 elif "Old Key" not in inventory:
                     print("You don't have anything to unlock the door.\nYou leave, knowing to come back with a key.")
                     continue
-            elif choice == "no":
+            elif current_index == 3 and choice == "no":
                 print("You go back to the hall\nYou have a feeling that door was important.")
                 continue
