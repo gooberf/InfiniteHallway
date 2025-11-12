@@ -106,7 +106,7 @@ elif os.path.exists("config/easyMode"):
     if easy_status == "1":
         print("Easy Mode is enabled.")
         time.sleep(2)
-        em.enable_easy_mode()
+        asyncio.run(em.enable_easy_mode())
     else:
         pass
 
