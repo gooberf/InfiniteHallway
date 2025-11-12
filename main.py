@@ -9,6 +9,10 @@ if os.name == 'nt':
     os.system('cls')
 else:
     os.system('clear')
+
+if os.path.exists("config") == False:
+    os.mkdir("config")
+
 if not os.path.exists("config/LLMsEnabled"):
     ai_option = choose.two_options("Would you like to enable the usage of Ollama for AI responses?", "yes", "no")
 
@@ -72,7 +76,7 @@ if os.path.exists("config/LLMsEnabled"):
                 print("Keeping existing configuration. Exiting...")
                 exit()
     else:
-        print("Ollama AI features are disabled.\nYou can enable them by deleting the 'config/LLMsEnabled' file and restarting the program.")
+        print("Ollama AI features are disabled.\nYou can change this by selecting 'reset config' in the main menu.")
 
 time.sleep(2)
 
