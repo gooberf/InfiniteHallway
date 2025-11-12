@@ -6,6 +6,8 @@ import time
 import functions.deleteConfig as delConfig
 import floors.floor_two as f2
 
+inventory = []
+
 if os.name == 'nt':
     os.system('cls')
 else:

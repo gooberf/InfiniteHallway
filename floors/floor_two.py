@@ -1,3 +1,32 @@
+import functions.choices as cho
+
+possible_rooms = [
+    "The room seems to stretch forever, yet also folds in on itself. Every time you blink, the walls are closer.",#index 0
+    "There's grass beneath you, soft and cold. The ceiling above is a perfect blue sky... until you notice clouds moving underneath it.",
+    "Everything here glows faintly, like it's sunlight but not. Furniture floats a few inches off the floor, gently spinning in slow circles.",
+    "Mirrors line the walls, but none show your reflection. Instead, you see the rooms you entered on the first floor in them."#index 4
+]
+
+ver_pos = 0
+
 def floor_two(inventory):
-    print("This is the function for floor two, it is currently a work in progress and will be finished sometime eventually.")
-    print(inventory)
+    global ver_pos
+    while True:
+        if ver_pos == 0:
+            choice = cho.three_options("Move up the hall, into the room on your right, or into the room on your left?", "up", "left", "right")
+            if choice == "up":
+                ver_pos += 1
+                print("You go up the hall")
+                continue
+            elif choice == "left":
+                print(f"You enter the room on your left.\n{possible_rooms[0]}")
+            elif choice == "right":
+                print(f"You enter the room on your right. \n{possible_rooms[3]}")
+        elif ver_pos == 1:
+            choice = cho.three_options("Move down the hall, into the room on your right, or into the room on your left?", "down", "left", "right")
+            if choice == "down":
+                ver_pos += -1
+                print("You go back down the hall")
+                continue
+
+       
