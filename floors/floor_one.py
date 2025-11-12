@@ -3,14 +3,6 @@ import functions.inventory as inv
 import functions.choices as choose
 import os
 
-if os.path.exists("LLMsEnabled"):
-    with open("LLMsEnabled", "r") as file:
-        data = file.read()
-    if data == "1":
-        LLMsEnabled = True
-    else:
-        LLMsEnabled = False
-
 inventory = []
 
 possible_rooms = [  
@@ -25,4 +17,14 @@ def floor_one():
         choice = choose.two_options("Do you want to go left or right?", "left", "right", "you go left", )
         current_index = random.randint(0, len(possible_rooms) - 1)
         current_room = possible_rooms[current_index]
-        pass
+        print(current_room)
+        choice = choose.two_options("Would you like to look around?", "yes", "no")
+        if choice == "yes" and current_index == 0 and "Rusted Axe" not in inventory:
+            print("You find an axe lying on the floor.\nIt's covered in rust")
+            print(f"You now have {inventory} in your inventory :)")
+            print("You leave the room.")
+            continue
+        elif choice == "yes" and current_index == 0 and "Rusted Axe" in inventory:
+            pass
+        elif choice =="yes" and current_index == 1 and "Old Key" not in inventory:
+            print("You ")
