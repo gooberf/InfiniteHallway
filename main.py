@@ -3,6 +3,7 @@ import floors.floor_one as f1
 import os
 import ollama
 import time
+import functions.deleteConfig as delConfig
 
 if os.name == 'nt':
     os.system('cls')
@@ -74,5 +75,13 @@ if os.path.exists("config/LLMsEnabled"):
         print("Ollama AI features are disabled.\nYou can enable them by deleting the 'config/LLMsEnabled' file and restarting the program.")
 
 time.sleep(2)
+
+mainMenuOption = choose.two_options("main menu placeholder", "start", "reset config")
+if mainMenuOption == "start":
+    pass
+elif mainMenuOption == "reset config":
+    delConfig.delete_config()
+    print("Please restart the program to set up configuration again.")
+    exit()
 
 inventory = f1.floor_one()
