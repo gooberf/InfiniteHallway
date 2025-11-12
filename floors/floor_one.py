@@ -1,5 +1,6 @@
 from ..functions import inventory as inv
 from ..functions import choices as choose
+import random
 
 inventory = []
 
@@ -11,4 +12,8 @@ possible_rooms = [
 ]
 
 def floor_one(inventory):
-    choose.two_options("Do you want to go left or right?")
+    while True:
+        choice = choose.two_options("Do you want to go left or right?", "left", "right", "you go left", )
+        current_index = random.randint(0, len(possible_rooms) - 1)
+        current_room = possible_rooms[current_index]
+        pass
