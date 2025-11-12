@@ -1,8 +1,6 @@
 import random
 import functions.choices as choose
 
-door_open = False
-
 inventory = []
 
 possible_rooms = [  
@@ -12,10 +10,13 @@ possible_rooms = [
     "It's bright. The room is loud aswell. It overwhelms you."
 ]
 
+door_open = False
+
 bought_key = False
 
 def floor_one():
     global bought_key
+    global door_open
     while True:
         choice = choose.two_options("Do you want to go left or right?", "left", "right", "you go left", )
         current_index = random.randint(0, len(possible_rooms) - 1)
@@ -38,35 +39,41 @@ def floor_one():
                 if choice == "yes" and "Ladder" in inventory:
                     inventory.remove("Ladder")
                     inventory.append("Old Key")
-                    print(f"You bought an old key!\n You now have {inventory} in your inventory!")
+                    print(f"You bought an old key!\nYou now have {inventory} in your inventory!")
                     bought_key = True
                     continue
                 elif choice == "yes" and "Ladder" not in inventory:
                     print("-----Merchant-----\nThis isn't a charity! Leave!\nThe merchant swiftly kicks you out. Maybe return when you have what they want.")
                     continue
                 elif choice == "no":
-                    print("-----Merchant-----\nAlright then, wanderer. Safe travels.\n You leave the room, heading back to the hallway")
+                    print("-----Merchant-----\nAlright then, wanderer. Safe travels.\nYou leave the room, heading back to the hallway")
                     continue
+            elif choice == "no":
+                print("-----Merchant-----\nAlright then, wanderer. Safe travels.\nYou leave the room, heading back to the hallway")
+                continue
         elif choice == "yes" and current_index == 1 and bought_key:
-            print("You walk into the room, but the merchant isn't here.\n You wonder where they went before heading back to the hallway.")
+            print("You walk into the room, but the merchant isn't here.\nYou wonder where they went before heading back to the hallway.")
             continue
         elif current_index == 2 and "Ladder" not in inventory and not bought_key:
-            print("There is a ladder in a pool of water...\n The exposed wires are right next to the water.")
+            print("There is a ladder in a pool of water...\nThe exposed wires are right next to the water.")
             choice = choose.two_options("Risk getting shocked to get the ladder?", "yes", "no")
             if choice == "yes":
                 ran_num = random.randint(1,2)
                 if ran_num == 1:
                     inventory.append("Ladder")
-                    print(f"You got the ladder!\nYou now have {inventory} in your inventory.\n After getting back out of the pool of water, you leave the room.")
+                    print(f"You got the ladder!\nYou now have {inventory} in your inventory.\nAfter getting back out of the pool of water, you leave the room.")
                     continue
                 else:
                     print("You get shocked and fall unconscious!\nWhen you awaken, you are in the hallway again.")
                     continue
             elif choice == "no":
-                print("You leave the ladder where it is, deciding not to try and grab it.\n You leave the room.")
+                print("You leave the ladder where it is, deciding not to try and grab it.\nYou leave the room.")
                 continue
         elif current_index == 2 and "Ladder" in inventory or current_index == 2 and bought_key:
             print("You enter the room, the pool of water still on the floor.\nThis time, you notice that a pipe is dripping water into the pool...\nThat's new.\nYou don't pay any mind to it and go back to the hallway, with nothing left to do here.")
+            continue
+        elif current_index == 2 and choice == "no":
+            print("You turn back to the hallway")
             continue
         elif current_index == 3 and choice == "yes":
             print("You notice a door that hides in the walls perfectly.")
@@ -78,18 +85,18 @@ def floor_one():
                     door_open = True
                     if choice == "yes":
                         inventory.remove("Old Key")
-                        print(f"You open the door, but in the process, the key gets stuck in the lock.\n You now have {inventory}\n You walk through the door and see wooden boards blocking your path.")
+                        print(f"You open the door, but in the process, the key gets stuck in the lock.\nYou now have {inventory}\nYou walk through the door and see wooden boards blocking your path.")
                         if "Rusted Axe" in inventory:
                             choice = choose.two_options("Break down the boards?", "yes", "no")
                             if choice == "yes":
-                                print("You break down the boards, breaking the axe from how old it was.\nYou go through the gap and see something odd\nIt looks just like the hallways from before, but you sense that it's different somehow.\n You enter the 'floor two', determining which way to go next.")
+                                print("You break down the boards, breaking the axe from how old it was.\nYou go through the gap and see something odd\nIt looks just like the hallways from before, but you sense that it's different somehow.\nYou enter the 'floor two', determining which way to go next.")
                                 inventory.remove("Rusted Axe")
                                 return inventory
                             if choice == "no":
                                 print("You turn back, going to the hallways again.\nYou feel you should come back later when you have something to break the boards.")
                                 continue
                         elif "Rusted Axe" not in inventory:
-                            print("You have nothing to break the doors.\n You turn back, going to the hallways\nYou take mental note of the door.")
+                            print("You have nothing to break the doors.\nYou turn back, going to the hallways\nYou take mental note of the door.")
                             continue
                     elif choice == "no":
                         print("You keep your key and turn around\nYou take note of this door though, having a feeling it's important.")
@@ -99,14 +106,14 @@ def floor_one():
                     if "Rusted Axe" in inventory:
                             choice = choose.two_options("Break down the boards?", "yes", "no")
                             if choice == "yes":
-                                print("You break down the boards, breaking the axe from how old it was.\nYou go through the gap and see something odd\nIt looks just like the hallways from before, but you sense that it's different somehow.\n You enter the 'floor two', determining which way to go next.")
+                                print("You break down the boards, breaking the axe from how old it was.\nYou go through the gap and see something odd\nIt looks just like the hallways from before, but you sense that it's different somehow.\nYou enter the 'floor two', determining which way to go next.")
                                 inventory.remove("Rusted Axe")
                                 return inventory
                             if choice == "no":
                                 print("You turn back, going to the hallways again.\nYou feel you should come back later when you have something to break the boards.")
                                 continue
                             elif "Rusted Axe" not in inventory:
-                                print("You have nothing to break the doors.\n You turn back, going to the hallways\nYou take mental note of the door.")
+                                print("You have nothing to break the doors.\nYou turn back, going to the hallways\nYou take mental note of the door.")
                                 continue
                 elif "Old Key" not in inventory:
                     print("You don't have anything to unlock the door.\nYou leave, knowing to come back with a key.")
