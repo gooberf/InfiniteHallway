@@ -121,3 +121,4 @@ def floor_one():
             elif current_index == 3 and choice == "no":
                 print("You go back to the hall\nYou have a feeling that door was important.")
                 continue
+# why are you reading this? there isnt anything interesting here.
