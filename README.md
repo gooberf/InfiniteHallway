@@ -6,6 +6,7 @@ A small, playful text-adventure / learning project written in Python. It was cre
 
 - Simple, file-based Python game with modular code under `floors/` and `functions/`.
 - Lightweight and easy to run locally with a standard Python 3 interpreter.
+- Ollama LLM support [(learn how to set up)](#llm-setup)
 
 ## Quick start
 
@@ -20,6 +21,12 @@ A small, playful text-adventure / learning project written in Python. It was cre
 3. Follow the on-screen prompts to play.
 
 If your environment uses a different python launcher (for example `python3`), use that instead.
+
+## LLM Setup
+1. Download [Ollama](https://ollama.com)
+2. Ensure Ollama is running when starting `main.py`
+### Revert LLM Choice
+If you want to be asked again whether or not to enable LLMs, delete the `LLMsEnabled` file in the root of the project
 
 ## Project layout
 
