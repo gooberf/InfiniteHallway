@@ -109,6 +109,12 @@ elif os.path.exists("config/easyMode"):
     else:
         pass
 
+
+if os.name == 'nt':
+    os.system('cls')
+else:
+    os.system('clear')
+    
 mainMenuOption = choose.two_options("main menu placeholder", "start", "reset config")
     
 
