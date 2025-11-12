@@ -12,7 +12,7 @@ else:
 
 
 if not os.path.exists("LLMsEnabled"):
-    enableLLMs = choose.two_options("Want to enable LLMs? These can be used to talk to NPCs. Performance varies based on your hardware. Check the README for more information.", "yes", "no", "chose yes", "chose no")
+    enableLLMs = choose.two_options("Want to enable LLMs? These can be used to talk to NPCs using unscripted dialogue. Performance varies based on your hardware. Check the README for more information.", "yes", "no", "chose yes", "chose no")
     if enableLLMs == "yes":
         print("LLMs enabled.")
         with open("LLMsEnabled", "w") as file:
