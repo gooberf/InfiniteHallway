@@ -1,5 +1,5 @@
-import choices as choose
-import inventory as inv
+from ..functions import inventory as inv
+from ..functions import choices as choose
 
 inventory = ["key", "rope", "Suspiciously human shaped ceiling decoration", "Sayori"]
 
