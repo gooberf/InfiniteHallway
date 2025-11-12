@@ -5,3 +5,4 @@ functions/invHelper/__pycache__/
 functions/invHelper/*.log
 LLMsEnabled
 /.venv
+/config
