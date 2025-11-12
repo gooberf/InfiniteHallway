@@ -91,6 +91,7 @@ def floor_one():
                             if choice == "yes":
                                 print("You break down the boards, breaking the axe from how old it was.\nYou go through the gap and see something odd\nIt looks just like the hallways from before, but you sense that it's different somehow.\nYou enter the 'floor two', determining which way to go next.")
                                 inventory.remove("Rusted Axe")
+                                inventory.append("Broken Axe")
                                 return inventory
                             if choice == "no":
                                 print("You turn back, going to the hallways again.\nYou feel you should come back later when you have something to break the boards.")

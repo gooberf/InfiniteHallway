@@ -5,6 +5,8 @@ import ollama
 import time
 import functions.deleteConfig as delConfig
 import floors.floor_two as f2
+import functions.easyMode as em
+import asyncio
 
 inventory = []
 
@@ -83,11 +85,34 @@ if os.path.exists("config/LLMsEnabled"):
 
 time.sleep(2)
 
-mainMenuOption = choose.two_options("main menu placeholder", "start", "reset config")
+
 if os.name == 'nt':
     os.system('cls')
 else:
     os.system('clear')
+
+if not os.path.exists("config/easyMode"):
+    easy_mode_choice = choose.two_options("Would you like to enable Easy Mode?", "yes", "no")
+    if easy_mode_choice == "yes":
+        with open("config/easyMode", "w") as ef:
+            ef.write("1")
+            asyncio.run(em.enable_easy_mode()) 
+    else:
+        with open("config/easyMode", "w") as ef:
+            ef.write("0")
+elif os.path.exists("config/easyMode"):
+    with open("config/easyMode", "r") as ef:
+        easy_status = ef.read().strip()
+    if easy_status == "1":
+        print("Easy Mode is enabled.")
+        time.sleep(2)
+        em.enable_easy_mode()
+    else:
+        pass
+
+mainMenuOption = choose.two_options("main menu placeholder", "start", "reset config")
+    
+
 if mainMenuOption == "start":
     pass
 elif mainMenuOption == "reset config":
