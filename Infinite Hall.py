@@ -83,7 +83,7 @@ def floor_one():
                 print("You look around for the merchant, but they aren't here.")
                 print("You go back to the hallway.")
                 continue
-            if current_index == 2:
+            elif current_index == 2:
                 print("There is a ladder where the wires are.")
                 choice = input('Take the risk for the ladder? ')
                 if choice.lower() == "yes" and "Ladder" not in inventory:
@@ -101,7 +101,7 @@ def floor_one():
                 elif choice.lower() == "no":
                     print("You leave the ladder and exit the room.")
                     continue
-            if current_index == 3:
+            elif current_index == 3:
                 print("It hurts to look around here...")
                 print("Through some luck, you find a door.")
                 choice = input('Open it? ')
