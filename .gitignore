@@ -7,3 +7,5 @@ LLMsEnabled
 /.venv
 /config
 functions/easyModeData
+data/
+data/*
