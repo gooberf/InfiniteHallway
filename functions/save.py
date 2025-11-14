@@ -6,3 +6,11 @@ def save(data):
         os.makedirs('saves')
     with open('saves/save.json', 'w') as f:
         json.dump(data, f)
+
+def load():
+    try:
+        with open('saves/save.json', 'r') as f:
+            data = json.load(f)
+        return data
+    except FileNotFoundError:
+        return None

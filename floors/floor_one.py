@@ -1,7 +1,9 @@
 try:   
     import random
     import functions.choices as choose
+    import functions.save as gameSave
 
+    saveData = gameSave.load()
     inventory = []
 
     possible_rooms = [  
