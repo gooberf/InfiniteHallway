@@ -2,7 +2,19 @@ import random
 import functions.choices as choose
 import functions.save as gameSave
 
-saveData = gameSave.load()
+def _ask_load_save():
+    """Ask whether to load an existing save or start fresh and return saveData."""
+    while True:
+        choice = input("Do you want to load your save? (yes/no): ").strip().lower()
+        if choice == "yes":
+            return gameSave.load()
+        if choice == "no":
+            print("Starting fresh :)")
+            return {"inventory": [], "bought_key": False, "door_open": False}
+        print("Choices are 'yes' or 'no'. Please answer correctly.")
+
+
+saveData = _ask_load_save()
 
 inventory = saveData['inventory']
 bought_key = saveData['bought_key']
