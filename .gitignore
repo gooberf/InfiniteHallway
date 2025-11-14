@@ -9,3 +9,4 @@ LLMsEnabled
 functions/easyModeData
 data/
 data/*
+.pytest_cache/
