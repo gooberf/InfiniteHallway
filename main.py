@@ -1,5 +1,5 @@
 import functions.choices as choose
-import floors.floor_one as f1
+# import floors.floor_one as f1
 import os
 import ollama
 import time
@@ -95,7 +95,8 @@ if not os.path.exists("config/easyMode"):
     if easy_mode_choice == "yes":
         with open("config/easyMode", "w") as ef:
             ef.write("1")
-        em.start_easy_mode_background()
+            em.initial_enable()
+        print("Easy Mode is enabled.")
     else:
         with open("config/easyMode", "w") as ef:
             ef.write("0")
@@ -119,6 +120,7 @@ mainMenuOption = choose.two_options("main menu placeholder", "start", "reset con
     
 
 if mainMenuOption == "start":
+    import floors.floor_one as f1
     inventory = f1.floor_one()
     inventory = f2.floor_two(inventory)
 elif mainMenuOption == "reset config":
