@@ -42,9 +42,8 @@ def floor_one():
         elif choice == "yes" and current_index == 1 and not bought_key:
             if ai_enabled:
                 # TODO make the conversation with the merchant work
-                response = ollama.chat(model=model, messages=[{'role': 'user', 'content': 'Talk to the player as a mysterious merchant trapped in a strange building. Describe yourself and your wares in detail, making it intriguing and fitting for a fantasy setting.'}])
-                merchant_description = response['choices'][0]['message']['content']
-                print(f"You look around the room and see... someone\n-----Merchant-----\n{merchant_description}")
+                response = ollama.chat(model=model, messages=[{'role': 'system', 'content': 'Talk to the player as a mysterious merchant trapped in a strange building. Describe yourself and your wares in detail, making it intriguing and fitting for a fantasy setting.'}])
+                print(response.message.content)
             else:
                 print("You look around the room and see... someone\n-----Merchant-----\nOh, hello wanderer! I didn't think another unfortunate soul would end up here...")
                 choice = choose.two_options("-----Merchant-----\nWould you like to look at my wares?", "yes", "no")
