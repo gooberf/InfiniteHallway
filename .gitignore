@@ -6,7 +6,4 @@ functions/invHelper/*.log
 LLMsEnabled
 /.venv
 /config
-functions/easyModeData
-data/
-data/*
-.pytest_cache/
+/saves

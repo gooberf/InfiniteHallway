@@ -1,5 +1,4 @@
 import functions.choices as choose
-# import floors.floor_one as f1
 import os
 import ollama
 import time
@@ -127,3 +126,5 @@ elif mainMenuOption == "reset config":
     delConfig.delete_config()
     print("Please restart the program to set up configuration again.")
     exit()
+
+
