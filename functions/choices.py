@@ -1,7 +1,7 @@
 import colorama
 import os
 from colorama import Fore, Style
-import functions.clear_terminal as clear_term
+import functions.terminal as clear_term
 # a function to give the player 2 options
 # commenting out end_texts because it's easier to just print the text in the floor file with an if statement
 def two_options(text, option1, option2, error_message="Invalid", input_func=input):

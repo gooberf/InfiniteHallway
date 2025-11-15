@@ -4,6 +4,7 @@ import functions.save as gameSave
 import functions.playtimetracker as playtimetracker
 import os
 import time
+import functions.terminal as terminal
 
 def _ask_load_save():
         """Ask whether to load an existing save or start fresh and return saveData."""
@@ -30,7 +31,13 @@ possible_rooms = [
 def floor_one():
     try:
         
-        saveData = _ask_load_save()
+        while True:
+            try:
+                saveData = _ask_load_save()
+                break
+            except KeyboardInterrupt:
+                print("just answer the damn question")
+                
 
         inventory = saveData['inventory']
         bought_key = saveData['bought_key']

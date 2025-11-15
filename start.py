@@ -65,7 +65,7 @@ time.sleep(random.randint(1,100)/100)
 try:
     import functions.choices
     import functions.save
-    import functions.clear_terminal
+    import functions.terminal
     print("Critical files loaded.")
 except:
     print("One or more CRITICAL functions failed to import. The game will NOT function without these. Please re-download the game from the following link:\nhttps://github.com/gooberf/InfiniteHallway")
