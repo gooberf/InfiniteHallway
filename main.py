@@ -6,7 +6,7 @@ import functions.deleteConfig as delConfig
 import floors.floor_two as f2
 import functions.easyMode as em
 import functions.playtimetracker as ptt
-import floors.floor_one as f1
+
 def start():
     inventory = []
 
