@@ -20,12 +20,6 @@ def _ask_load_save():
             return {"inventory": [], "bought_key": False, "door_open": False}
 
 
-saveData = _ask_load_save()
-
-inventory = saveData['inventory']
-bought_key = saveData['bought_key']
-door_open = saveData['door_open']
-
 possible_rooms = [  
     "The room is dark and smells faintly of rust.",
     "It looks like a birthday party. Balloons are everywhere.",
@@ -35,10 +29,17 @@ possible_rooms = [
 
 def floor_one():
     try:
-        global bought_key
-        global door_open
-        global inventory
-        global saveData
+        
+        saveData = _ask_load_save()
+
+        inventory = saveData['inventory']
+        bought_key = saveData['bought_key']
+        door_open = saveData['door_open']
+
+        #global bought_key
+        #global door_open
+        #global inventory
+        #global saveData
         
         while True:
                 choice = choose.two_options("Do you want to go left or right?", "left", "right")
