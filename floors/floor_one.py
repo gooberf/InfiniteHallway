@@ -1,30 +1,39 @@
-try:   
-    import random
-    import functions.choices as choose
-    import functions.save as gameSave
+import random
+import functions.choices as choose
+import functions.save as gameSave
 
-    saveData = gameSave.load() or {
-        'inventory': [],
-        'current_room': 'floor_one',
-        'floor': 1
-    }
-    inventory = []
+def _ask_load_save():
+    """Ask whether to load an existing save or start fresh and return saveData."""
+    while True:
+        choice = input("Do you want to load your save? (yes/no): ").strip().lower()
+        if choice == "yes":
+            return gameSave.load()
+        if choice == "no":
+            print("Starting fresh :)")
+            return {"inventory": [], "bought_key": False, "door_open": False}
+        print("Choices are 'yes' or 'no'. Please answer correctly.")
 
-    possible_rooms = [  
-        "The room is dark and smells faintly of rust.",
-        "It looks like a birthday party. Balloons are everywhere.",
-        "There is a soft hum from exposed wires on the ground.",
-        "It's bright. The room is loud aswell. It overwhelms you."
-    ]
 
-    door_open = False
+saveData = _ask_load_save()
 
-    bought_key = False
+inventory = saveData['inventory']
+bought_key = saveData['bought_key']
+door_open = saveData['door_open']
 
-    def floor_one():
-        global bought_key
-        global door_open
-        while True:
+possible_rooms = [  
+    "The room is dark and smells faintly of rust.",
+    "It looks like a birthday party. Balloons are everywhere.",
+    "There is a soft hum from exposed wires on the ground.",
+    "It's bright. The room is loud aswell. It overwhelms you."
+]
+
+def floor_one():
+    global bought_key
+    global door_open
+    global inventory
+    global saveData
+    
+    while True:
             choice = choose.two_options("Do you want to go left or right?", "left", "right", "you go left", )
             current_index = random.randint(0, len(possible_rooms) - 1)
             current_room = possible_rooms[current_index]
@@ -32,6 +41,7 @@ try:
             choice = choose.two_options("Would you like to look around?", "yes", "no")
             if choice == "yes" and current_index == 0 and "Rusted Axe" not in inventory:
                 inventory.append("Rusted Axe")
+                saveData['inventory'] = inventory
                 print(f"You find an axe lying on the floor.\nIt's covered in rust\nYou now have {inventory} in your inventory :)")
                 print("You leave the room")
                 continue
@@ -46,6 +56,8 @@ try:
                     if choice == "yes" and "Ladder" in inventory:
                         inventory.remove("Ladder")
                         inventory.append("Old Key")
+                        saveData['inventory'] = inventory
+                        saveData['bought_key'] = True
                         print(f"You bought an old key!\nYou now have {inventory} in your inventory!")
                         bought_key = True
                         continue
@@ -68,6 +80,7 @@ try:
                     ran_num = random.randint(1,2)
                     if ran_num == 1:
                         inventory.append("Ladder")
+                        saveData['inventory'] = inventory
                         print(f"You got the ladder!\nYou now have {inventory} in your inventory.\nAfter getting back out of the pool of water, you leave the room.")
                         continue
                     else:
@@ -90,14 +103,17 @@ try:
                     if "Old Key" in inventory and not door_open:
                         choice = choose.two_options("Use your key to unlock it?", "yes", "no")
                         door_open = True
+                        saveData['door_open'] = True
                         if choice == "yes":
                             inventory.remove("Old Key")
+                            saveData['inventory'] = inventory
                             print(f"You open the door, but in the process, the key gets stuck in the lock.\nYou now have {inventory}\nYou walk through the door and see wooden boards blocking your path.")
                             if "Rusted Axe" in inventory:
                                 choice = choose.two_options("Break down the boards?", "yes", "no")
                                 if choice == "yes":
                                     print("You break down the boards, breaking the axe from how old it was.\nYou go through the gap and see something odd\nIt looks just like the hallways from before, but you sense that it's different somehow.\nYou enter the 'floor two', determining which way to go next.")
                                     inventory.remove("Rusted Axe")
+                                    saveData['inventory'] = inventory
                                     return inventory
                                 if choice == "no":
                                     print("You turn back, going to the hallways again.\nYou feel you should come back later when you have something to break the boards.")
@@ -115,6 +131,7 @@ try:
                                 if choice == "yes":
                                     print("You break down the boards, breaking the axe from how old it was.\nYou go through the gap and see something odd\nIt looks just like the hallways from before, but you sense that it's different somehow.\nYou enter the 'floor two', determining which way to go next.")
                                     inventory.remove("Rusted Axe")
+                                    saveData['inventory'] = inventory
                                     return inventory
                                 if choice == "no":
                                     print("You turn back, going to the hallways again.\nYou feel you should come back later when you have something to break the boards.")
@@ -128,32 +145,38 @@ try:
                 elif current_index == 3 and choice == "no":
                     print("You go back to the hall\nYou have a feeling that door was important.")
                     continue
-except KeyboardInterrupt or SystemExit or Exception:
-    if Exception := Exception:
-        print(f"An error occurred: {exception}")
-        save = choose.two_options("An unexpected exception occured! You can choose to save, but it may result in a corrupted save. Would you like to save your data?", "yes", "no")
-        if save == "yes":
-            try:
-                import functions.save as save_module
-                #gameSave.save(saveData)
-                print("Game saved successfully.")
-                restartChoice = choose.two_options("Would you like to restart the game?", "yes", "no")
-                if restartChoice == "yes":
-                    print("Restarting the game...")
-                    import os
-                    os.execv(__file__, [''])
-                else:
-                    print("Exiting the game. Goodbye!")
-                    exit()
-            except Exception as save_exception:
-                print(f"Failed to save the game: {save_exception}")
-        else:
-            print("You chose not to save your data.")
+
+try:
+    floor_one()
+except KeyboardInterrupt:
+    print("Game interrupted by user. Exiting gracefully.")
+    saveData['inventory'] = inventory
+    saveData['bought_key'] = bought_key
+    saveData['door_open'] = door_open
+    gameSave.save(saveData)
+    print("Game saved successfully. Goodbye!")
+    exit()
+except Exception as exception:
+    print(f"An error occurred: {exception}")
+    save = choose.two_options("An unexpected exception occured! You can choose to save, but it may result in a corrupted save. Would you like to save your data?", "yes", "no")
+    if save == "yes":
+        try:
+            saveData['inventory'] = inventory
+            saveData['bought_key'] = bought_key
+            saveData['door_open'] = door_open
+            gameSave.save(saveData)
+            print("Game saved successfully.")
+            restartChoice = choose.two_options("Would you like to restart the game?", "yes", "no")
+            if restartChoice == "yes":
+                print("Restarting the game...")
+                import os
+                os.execv(__file__, [''])
+            else:
+                print("Exiting the game. Goodbye!")
+                exit()
+        except Exception as save_exception:
+            print(f"Failed to save the game: {save_exception}")
             exit()
-        if Exception := KeyboardInterrupt:
-            print("Game interrupted by user. Exiting gracefully.")
-            #gameSave.save(saveData)
-            exit()
-        pass
-    pass
-# why are you reading this? there isnt anything interesting here.
+    else:
+        print("You chose not to save your data.")
+        exit()

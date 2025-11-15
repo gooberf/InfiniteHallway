@@ -6,3 +6,4 @@ functions/invHelper/*.log
 LLMsEnabled
 /.venv
 /config
+/saves

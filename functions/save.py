@@ -24,4 +24,9 @@ def load():
             data = json.load(f)
         return data
     except FileNotFoundError:
-        return None
+        # Return default save data structure
+        return {
+            'inventory': [],
+            'bought_key': False,
+            'door_open': False
+        }
