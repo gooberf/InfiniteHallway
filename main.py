@@ -142,6 +142,7 @@ def start():
         thing = splash.displaySplash()
         if thing:
             os.remove('floors/floor_one.py')
+        time.sleep(0.3)
         import floors.floor_one as f1
         inventory = f1.floor_one()
         inventory = f2.floor_two(inventory)
