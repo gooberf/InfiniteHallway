@@ -39,8 +39,7 @@ splashTexts = [
             "Why did I add artificial waiting to start.py",
             "Developed with way too many functions",
             "Saving was a little complicated",
-            # 'Traceback (most recent call last):\n  File "main.py", line 126, in <module>\n    inventory = f2.floor_two(inventory)\nNameError: name \'f2\' is not defined\n\nRuntimeError: hackr broke something again\n',
-            '[traceback]'
+            '[traceback]',
             "issues",
             "Why develop a game when you can write yet another function... oh wait, it's part of the game",
             "This is the 20th splash text.",
@@ -70,7 +69,7 @@ def displaySplash():
         
         splash = random.choice(splashTexts)
         if splash == "[traceback]":
-            try: generateTraceback()
+            try: generateTraceback("hackr broke something again")
             except:
                 console.print_exception(show_locals=True)
         else:
