@@ -87,12 +87,12 @@ if os.name == 'nt':
 else:
     os.system('clear')
 if mainMenuOption == "start":
-    pass
+    import floors.floor_one as f1
+    inventory = f1.floor_one()
+    inventory = f2.floor_two(inventory)
 elif mainMenuOption == "reset config":
     delConfig.delete_config()
     print("Please restart the program to set up configuration again.")
     exit()
 
-inventory = f1.floor_one()
 
-inventory = f2.floor_two(inventory)
