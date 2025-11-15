@@ -27,6 +27,9 @@ try:
 except:
     missingDependencies.append("ollama")
 
+try: import rich
+except: missingDependencies.append("rich")
+
 if missingDependencies == []:
     print("You have all required dependancies!")
 else:
@@ -52,6 +55,8 @@ except: failed_installs.append('colorama')
 try: import ollama
 except: failed_installs.append('ollama')
 
+try: import rich
+except: failed_installs.append('rich')
 
 if failed_installs == []: print("All dependancies successfully installed!")
 else: 
