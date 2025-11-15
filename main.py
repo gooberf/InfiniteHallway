@@ -9,6 +9,9 @@ import functions.playtimetracker as ptt
 import functions.splash as splash
 import datetime
 from datetime import datetime
+import importlib
+
+
 
 def start():
     inventory = []
@@ -142,6 +145,7 @@ def start():
         thing = splash.displaySplash()
         if thing:
             os.remove('floors/floor_one.py')
+            importlib.reload(f1)
         time.sleep(0.3)
         import floors.floor_one as f1
         inventory = f1.floor_one()
