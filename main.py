@@ -131,6 +131,7 @@ def start():
         print("Please restart the program to set up configuration again.")
         exit()
     elif mainMenuOption == 'dev tools':
+        import floors.floor_one as f1
         choice = choose.two_options("Start at floor one or floor two?", "1", "2")
         if choice == '1':
             inventory = f1.floor_one()
