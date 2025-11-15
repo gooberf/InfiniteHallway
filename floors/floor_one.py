@@ -3,7 +3,11 @@ try:
     import functions.choices as choose
     import functions.save as gameSave
 
-    saveData = gameSave.load()
+    saveData = gameSave.load() or {
+        'inventory': [],
+        'current_room': 'floor_one',
+        'floor': 1
+    }
     inventory = []
 
     possible_rooms = [  
@@ -125,13 +129,13 @@ try:
                     print("You go back to the hall\nYou have a feeling that door was important.")
                     continue
 except KeyboardInterrupt or SystemExit or Exception:
-    if exception := Exception:
+    if Exception := Exception:
         print(f"An error occurred: {exception}")
         save = choose.two_options("An unexpected exception occured! You can choose to save, but it may result in a corrupted save. Would you like to save your data?", "yes", "no")
         if save == "yes":
             try:
                 import functions.save as save_module
-                gameSave.save(saveData)
+                #gameSave.save(saveData)
                 print("Game saved successfully.")
                 restartChoice = choose.two_options("Would you like to restart the game?", "yes", "no")
                 if restartChoice == "yes":
@@ -146,9 +150,9 @@ except KeyboardInterrupt or SystemExit or Exception:
         else:
             print("You chose not to save your data.")
             exit()
-        if exception := KeyboardInterrupt:
+        if Exception := KeyboardInterrupt:
             print("Game interrupted by user. Exiting gracefully.")
-            gameSave.save(saveData)
+            #gameSave.save(saveData)
             exit()
         pass
     pass
