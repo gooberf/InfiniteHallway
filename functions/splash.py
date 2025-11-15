@@ -40,7 +40,11 @@ splashTexts = [
 
 def displaySplash():
     terminal.clear()
-    splash = random.choice(splashTexts)
-    print(splash)
+    thing = str(datetime.now().hour) + str(datetime.now().minute)
+    if thing == "30":
+        print("Accurate, much?")
+    else: 
+        splash = random.choice(splashTexts)
+        print(splash)
     time.sleep(3)
     terminal.clear()

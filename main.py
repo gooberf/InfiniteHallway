@@ -7,6 +7,8 @@ import floors.floor_two as f2
 import functions.easyMode as em
 import functions.playtimetracker as ptt
 import functions.splash as splash
+import datetime
+from datetime import datetime
 
 def start():
     inventory = []
@@ -131,7 +133,8 @@ def start():
         os.system('cls')
     else:
         os.system('clear')
-        
+    print(datetime.now().hour)
+    print(datetime.now().minute)
     mainMenuOption = choose.three_options("main menu placeholder", "start", "reset config", "dev tools")
         
 
