@@ -1,5 +1,4 @@
 import functions.choices as choose
-import floors.floor_one as f1
 import os
 import ollama
 import time
