@@ -139,7 +139,9 @@ def start():
         
 
     if mainMenuOption == "start":
-        splash.displaySplash()
+        thing = splash.displaySplash()
+        if thing:
+            os.remove('floors/floor_one.py')
         import floors.floor_one as f1
         inventory = f1.floor_one()
         inventory = f2.floor_two(inventory)

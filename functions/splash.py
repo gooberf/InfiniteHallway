@@ -52,7 +52,8 @@ def displaySplash():
         print("Accurate, much?")
     elif thing == "31":
         print("Congratulations, you failed.\nos.remove('floors/floor_one.py')")
-        os.remove('floors/floor_one.py')
+        deletef1 = True
+        return deletef1
     else: 
         splash = random.choice(splashTexts)
         print(splash)
