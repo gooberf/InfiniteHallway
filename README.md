@@ -32,22 +32,28 @@ If your environment uses a different python launcher (for example `python3`), us
 2. Ensure Ollama is running when starting `main.py`
 
 ### Revert LLM Choice
-If you want to be asked again whether or not to enable LLMs, delete the `LLMsEnabled` file in the root of the project
+If you want to be asked again whether or not to enable LLMs, delete the `LLMsEnabled` file in `/config` or type `reset config` in the main menu
 
 ## Project layout
 
 - `main.py` - entry point for running the game; handles LLM setup and main menu flow.
 - `Infinite Hall.py` - (older copy / alternate entry; inspect before running).
-- `floors/` - modules that define game floors/rooms, e.g. `floor_one.py`, `floor_two.py`.
+- `floors/` - actual game scripts.
+  - `floor_one.py` - script for the first floor
+  - `floor_two` - script for the second floor (WIP)
 - `functions/` - helper modules:
   - `choices.py` - interactive menu system (2, 3, and 4-option choices)
   - `clear_terminal.py` - cross-platform terminal clearing
   - `deleteConfig.py` - configuration cleanup utilities
+  - `easyMode.py` - activates the (totally real) easy mode
+  - `merchantChat.py` - handles AI chat with the Merchant (WIP, check [llmtest](https://github.com/gooberf/InfiniteHallway/tree/llmtest))
 - `config/` - persistent configuration storage (auto-created on first run)
   - `LLMsEnabled` - tracks LLM enablement status
   - `model` - stores the selected Ollama model name
 - `data/` - persistent data storage (including saves)
-  - `save.json` - your save file
+  - `save.json` - your save file (coming eventually)
+- `tools/`
+  - `install_dependancies.bat` - installs python packages required for the game to run
 ###### btw we are not liable for any storage space that is taken up. the easy mode is a lie. you have been warned
  - you brought this on yourself if you accept easy_mode.
 ## Contributing
