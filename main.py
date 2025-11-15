@@ -6,6 +6,7 @@ import functions.deleteConfig as delConfig
 import floors.floor_two as f2
 import functions.easyMode as em
 import functions.playtimetracker as ptt
+import functions.splash as splash
 
 def start():
     inventory = []
@@ -123,6 +124,7 @@ def start():
         
 
     if mainMenuOption == "start":
+        splash.displaySplash()
         import floors.floor_one as f1
         inventory = f1.floor_one()
         inventory = f2.floor_two(inventory)

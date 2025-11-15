@@ -3,7 +3,7 @@ import time
 import random
 
 print("Ensuring you have required dependencies...")
-time.sleep(random.randint(1,300)/100)
+time.sleep(random.randint(1,100)/100)
 
 missingDependencies = []
 
@@ -60,7 +60,7 @@ else:
 
 
 print("Testing critical game functions...")
-time.sleep(random.randint(1,300)/100)
+time.sleep(random.randint(1,100)/100)
 
 try:
     import functions.choices
@@ -72,7 +72,7 @@ except:
     exit()
 
 print("Attempting to load floor files...")
-time.sleep(random.randint(1,300)/100)
+time.sleep(random.randint(1,100)/100)
 
 try:
     import floors.floor_one
@@ -83,7 +83,7 @@ except:
     exit()
 
 print("Checking less critical files...")
-time.sleep(random.randint(1,300)/100)
+time.sleep(random.randint(1,100)/100)
 
 try:
     import functions.easyMode
@@ -97,7 +97,7 @@ except:
         print("Quitting...")
         exit()
 print("Attempting to start game...")
-time.sleep(random.randint(1,300)/100)
+time.sleep(random.randint(1,100)/100)
 
 import main
 
