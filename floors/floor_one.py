@@ -36,6 +36,7 @@ def floor_one():
                 saveData = _ask_load_save()
                 break
             except KeyboardInterrupt:
+                terminal.clear()
                 print("just answer the damn question")
                 
 
@@ -208,6 +209,7 @@ def floor_one():
         else:
             print("okay i'm just gonna waste a minute of your time")
             time.sleep(60)
+            terminal.clear()
             exit()
             
 
