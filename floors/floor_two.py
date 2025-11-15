@@ -96,10 +96,11 @@ def floor_two(inventory):
                     choice = cho.four_options('What is the missing reflection?', 'broken axe', 'wooden boards', 'merchant', 'none')
                     if choice == 'merchant':
                         print('The merchant\'s reflection suddenly appears in the mirror\nThey wave slightly as a small ding sound goes off in the room.\nThe merchant hands you something... a fragment of something through the mirror.')
-                        #TODO make the room b's (this rooms) fragment appear in the inventory of the user.
+                        inventory.append("Fragment")
+                        print(f'You take the fragment.\n{inventory}')
                 else:
-                    pass # if they choose not to work on the mirror puzzle
-                continue # work on this one second
+                    print("You leave the room, deciding to fix the mirrors later.")
+                    continue
             elif choice == 'stats':
                 _show_stats(inventory)
                 continue
