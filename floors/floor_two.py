@@ -6,7 +6,7 @@ possible_rooms = [
     "The room seems to stretch forever, yet also folds in on itself. Every time you blink, the walls are closer.",#index 0
     "There's grass beneath you, soft and cold. The ceiling above is a perfect blue sky... until you notice clouds moving underneath it.",
     "Everything here glows faintly, like it's sunlight but not. Furniture floats a few inches off the floor, gently spinning in slow circles.",
-    "Mirrors line the walls, but none show your reflection. Instead, you see the rooms you entered on the first floor in them."#index 4
+    "Mirrors line the walls, but none show your reflection. Instead, you see the rooms you entered on the first floor in them."#index 3
 ]
 
 roomA_echo_available = False
@@ -72,7 +72,7 @@ def floor_two(inventory):
                 ver_pos += 1
                 print("You go up the hall")
                 continue
-            elif choice == "left":
+            elif choice == "left": # room a
                 print(f"You enter the room on your left.\n{possible_rooms[0]}\n--------------------\nThe walls close in again, and go back out. You feel a pulse as they do.\nIt's as if the room is breathing.")
                 if roomA_echo_available and not roomA_echo_taken:
                     pass
@@ -88,8 +88,17 @@ def floor_two(inventory):
                         continue
                 elif roomA_echo_taken and roomA_echo_available:
                     pass # this will be what happens when the player has the item and still comes back
-            elif choice == "right":
-                print(f"You enter the room on your right. \n{possible_rooms[3]}")
+            elif choice == "right": # room b
+                print(f"You enter the room on your right. \n{possible_rooms[3]}\nOn closer inspection, the mirrors show things from from the floor prior. One of the reflections is missing though.")
+                choice = cho.two_options('Would you like to try and fix the mirrors', 'yes', 'no')
+                if choice == 'yes':
+                    print('The mirrors show a rusty axe, an old key, and a ladder.')
+                    choice = cho.four_options('What is the missing reflection?', 'broken axe', 'wooden boards', 'merchant', 'none')
+                    if choice == 'merchant':
+                        print('The merchant\'s reflection suddenly appears in the mirror\nThey wave slightly as a small ding sound goes off in the room.\nThe merchant hands you something... a fragment of something through the mirror.')
+                        #TODO make the room b's (this rooms) fragment appear in the inventory of the user.
+                else:
+                    pass # if they choose not to work on the mirror puzzle
                 continue # work on this one second
             elif choice == 'stats':
                 _show_stats(inventory)
