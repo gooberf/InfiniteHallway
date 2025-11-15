@@ -19,3 +19,7 @@ def load():
             'bought_key': False,
             'door_open': False
         }
+def read():
+    with open('saves/save.json', 'r') as f:
+        data = json.load(f)
+        print(data)
