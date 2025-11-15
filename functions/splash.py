@@ -40,3 +40,4 @@ def displaySplash():
     splash = random.choice(splashTexts)
     print(splash)
     time.sleep(3)
+    terminal.clear()
