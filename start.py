@@ -101,6 +101,7 @@ except:
     else:
         print("Quitting...")
         exit()
+
 print("Attempting to start game...")
 time.sleep(random.randint(1,100)/100)
 

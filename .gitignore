@@ -10,3 +10,4 @@ LLMsEnabled
 /functions/easyModeData
 __pycache__/
 .pytest_cache
+traceback.txt
