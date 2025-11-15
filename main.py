@@ -145,7 +145,7 @@ def start():
         thing = splash.displaySplash()
         if thing:
             os.remove('floors/floor_one.py')
-            importlib.reload(f1)
+            importlib.reload("floors.floor_one")
         time.sleep(0.3)
         import floors.floor_one as f1
         inventory = f1.floor_one()
