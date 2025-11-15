@@ -5,15 +5,18 @@ import os
 import time
 
 def _ask_load_save():
-    """Ask whether to load an existing save or start fresh and return saveData."""
-    while True:
-        choice = input("Do you want to load your save? (yes/no): ").strip().lower()
-        if choice == "yes":
-            return gameSave.load()
-        if choice == "no":
-            print("Starting fresh :)")
+        """Ask whether to load an existing save or start fresh and return saveData."""
+        if os.path.exists('saves/save.json'):
+            while True:
+                choice = input("Do you want to load your save? (yes/no): ").strip().lower()
+                if choice == "yes":
+                    return gameSave.load()
+                if choice == "no":
+                    print("Starting fresh :)")
+                    return {"inventory": [], "bought_key": False, "door_open": False}
+                print("Choices are 'yes' or 'no'. Please answer correctly.")
+        else:
             return {"inventory": [], "bought_key": False, "door_open": False}
-        print("Choices are 'yes' or 'no'. Please answer correctly.")
 
 
 saveData = _ask_load_save()

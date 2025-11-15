@@ -5,8 +5,8 @@ import functions.choices as choose
 def save(data):
     jsonData = {
         'inventory': data['inventory'],
-        'current_room': data['current_room'],
-        'floor': data['floor']
+        'bought_key': data['bought_key'],
+        'door_open': data['door_open']
     }
     
     #if not os.path.exists('saves'):
@@ -14,6 +14,8 @@ def save(data):
     while True:
         try:
             with open('saves/save.json', 'w') as f:
+                if not os.path.exists('saves/save.json'):
+                    os.mkdir('saves')
                 json.dump(data, f)
         except KeyboardInterrupt:
             choose.two_options("You're still saving! Are you sure you want to quit?", "yes", "no")
