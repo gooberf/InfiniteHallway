@@ -3,6 +3,7 @@ import functions.terminal as terminal
 import time
 import datetime
 from datetime import datetime
+import os
 
 today = datetime.now()
 
@@ -35,7 +36,13 @@ splashTexts = [
             f"Are you having a nice {day_names[todayWeek]}?",
             "Some dialogue *mildly* inspired by Doki Doki Literature Club!",
             "Abnormal Object Show never",
-            "TDOS still going on, after all this time"
+            "TDOS still going on, after all this time",
+            "...before GTA 6",
+            "Someone tell Vedal there is a problem with my AI.",
+            "Filtered.",
+            "meow meow lol",
+            "This was written at 1:32 in the morning.",
+
             ]
 
 def displaySplash():
@@ -43,6 +50,9 @@ def displaySplash():
     thing = str(datetime.now().hour) + str(datetime.now().minute)
     if thing == "30":
         print("Accurate, much?")
+    elif thing == "31":
+        print("Congratulations, you failed.\nos.remove('floors/floor_one.py')")
+        os.remove('floors/floor_one.py')
     else: 
         splash = random.choice(splashTexts)
         print(splash)

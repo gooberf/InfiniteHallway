@@ -7,3 +7,6 @@ def clear():
     else:
         os.system('clear')
 
+def run(cmd):
+    os.system(cmd)
+    
