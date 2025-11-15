@@ -1,5 +1,4 @@
 import functions.choices as cho
-
 import functions.save as save
 import functions.playtimetracker as playtimetracker
 
@@ -10,6 +9,14 @@ possible_rooms = [
     "Mirrors line the walls, but none show your reflection. Instead, you see the rooms you entered on the first floor in them."#index 4
 ]
 
+roomA_echo_available = False
+roomA_echo_taken = False
+
+roomB_fragment_taken = False
+
+roomC_hollow_taken = False
+
+roomD_tone_created = False
 ver_pos = 0
 
 
@@ -37,10 +44,13 @@ def _show_stats(inventory):
 
     # Update and persist save data
     saveData['inventory'] = inventory
-    saveData['bought_key'] = bought_key
-    saveData['door_open'] = door_open
+    saveData['A_echo_taken'] = roomA_echo_taken
+    saveData['a_echo_Available'] = roomA_echo_available
     saveData['playtime_minutes'] = minutes
     saveData['playtime_seconds'] = seconds
+    saveData['B_frag_Taken'] = roomB_fragment_taken
+    saveData['C_hollow_Taken'] = roomC_hollow_taken
+    saveData['d_tone_Created'] = roomD_tone_created
 
     try:
         save.save(saveData)
@@ -57,14 +67,27 @@ def floor_two(inventory):
     global ver_pos
     while True:
         if ver_pos == 0:
-            choice = cho.four_options("Move up the hall, into the room on your right, or into the room on your left? You can also view your stats", "up", "left", "right", "stats")
+            choice = cho.four_options(f"{inventory}\nMove up the hall, into the room on your right, or into the room on your left? You can also view your stats", "up", "left", "right", "stats")
             if choice == "up":
                 ver_pos += 1
                 print("You go up the hall")
                 continue
             elif choice == "left":
-                print(f"You enter the room on your left.\n{possible_rooms[0]}")
-                # make
+                print(f"You enter the room on your left.\n{possible_rooms[0]}\n--------------------\nThe walls close in again, and go back out. You feel a pulse as they do.\nIt's as if the room is breathing.")
+                if roomA_echo_available and not roomA_echo_taken:
+                    pass
+                elif not roomA_echo_available:
+                    print("You look around the room, it seem squelchy as you walk around. Nothing is here now though.")
+                    choice = cho.two_options('Leave?', 'yes', 'no')
+                    if choice == 'yes':
+                        print('you leave the room')
+                        continue
+                    else:
+                        print("You look around a bit more, still finding nothing.")
+                        print('you leave the room')
+                        continue
+                elif roomA_echo_taken and roomA_echo_available:
+                    pass # this will be what happens when the player has the item and still comes back
             elif choice == "right":
                 print(f"You enter the room on your right. \n{possible_rooms[3]}")
                 continue # work on this one second
