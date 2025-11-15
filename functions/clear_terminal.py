@@ -1,7 +1,7 @@
 import os
 
-def clear_terminal():
-    """Clear the terminal screen based on the operating system."""
+def clear():
+    """Clear the terminal screen. Works on both Windows and Unix systems."""
     if os.name == 'nt':
         os.system('cls')
     else:
