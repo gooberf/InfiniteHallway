@@ -32,7 +32,10 @@ splashTexts = [
             "issues",
             "Why develop a game when you can write yet another function... oh wait, it's part of the game",
             "This is the 20th splash text.",
-            f"Are you having a nice {day_names[todayWeek]}?"
+            f"Are you having a nice {day_names[todayWeek]}?",
+            "Some dialogue *mildly* inspired by Doki Doki Literature Club!",
+            "Abnormal Object Show never",
+            "TDOS still going on, after all this time"
             ]
 
 def displaySplash():
