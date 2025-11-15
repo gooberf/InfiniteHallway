@@ -17,7 +17,7 @@ def two_options(text, option1, option2, error_message="Invalid", input_func=inpu
             print(error_message)
             
 # a function to give the player 4 options, probably only for movement, but we'll see.
-def four_options(text, option1, option2, option3, option4, error_message, input_func=input):
+def four_options(text, option1, option2, option3, option4, error_message='Invalid', input_func=input):
     while True:
         picked_option = input_func(f'--------------------------------\n{text}\n------\n{option1}\n{option2}\n{option3}\n{option4}\n--------------------------------\n').lower()
         if picked_option == option1:

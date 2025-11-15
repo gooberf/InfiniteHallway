@@ -1,5 +1,7 @@
 import functions.choices as cho
 
+import functions.save as save
+
 possible_rooms = [
     "The room seems to stretch forever, yet also folds in on itself. Every time you blink, the walls are closer.",#index 0
     "There's grass beneath you, soft and cold. The ceiling above is a perfect blue sky... until you notice clouds moving underneath it.",
@@ -13,7 +15,7 @@ def floor_two(inventory):
     global ver_pos
     while True:
         if ver_pos == 0:
-            choice = cho.three_options("Move up the hall, into the room on your right, or into the room on your left?", "up", "left", "right")
+            choice = cho.four_options("Move up the hall, into the room on your right, or into the room on your left? You can also view your stats", "up", "left", "right", "stats")
             if choice == "up":
                 ver_pos += 1
                 print("You go up the hall")
@@ -30,8 +32,10 @@ def floor_two(inventory):
             elif choice == "right":
                 print(f"You enter the room on your right. \n{possible_rooms[3]}")
                 continue # work on this one second
+            elif choice == 'stats':
+                print(save.read())
         elif ver_pos == 1:
-            choice = cho.three_options("Move down the hall, into the room on your right, or into the room on your left?", "down", "left", "right")
+            choice = cho.four_options("Move down the hall, into the room on your right, or into the room on your left? You can also view your stats", "down", "left", "right", "stats")
             if choice == "down":
                 ver_pos += -1
                 print("You go back down the hall")
@@ -42,4 +46,6 @@ def floor_two(inventory):
             elif choice == "right":
                 print(f"You enter the room on your right.\n{possible_rooms[1]}")
                 continue # work on this one last
+            elif choice =="stats":
+                print(save.read())
        

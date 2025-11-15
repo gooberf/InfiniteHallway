@@ -5,8 +5,12 @@ import time
 import functions.deleteConfig as delConfig
 import floors.floor_two as f2
 import functions.easyMode as em
+import functions.playtimetracker as ptt
+import floors.floor_one as f1
 
 inventory = []
+
+ptt.start_playtime_tracker()
 
 if os.name == 'nt':
     os.system('cls')
@@ -115,7 +119,7 @@ if os.name == 'nt':
 else:
     os.system('clear')
     
-mainMenuOption = choose.two_options("main menu placeholder", "start", "reset config")
+mainMenuOption = choose.three_options("main menu placeholder", "start", "reset config", "dev tools")
     
 
 if mainMenuOption == "start":
@@ -126,5 +130,10 @@ elif mainMenuOption == "reset config":
     delConfig.delete_config()
     print("Please restart the program to set up configuration again.")
     exit()
-
+elif mainMenuOption == 'dev tools':
+    choice = choose.two_options("Start at floor one or floor two?", "1", "2")
+    if choice == '1':
+        inventory = f1.floor_one()
+    elif choice == '2':
+        inventory = f2.floor_two(inventory)
 

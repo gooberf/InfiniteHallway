@@ -40,16 +40,44 @@ def floor_one():
         global saveData
         
         while True:
-                choice = choose.two_options("Do you want to go left or right?", "left", "right", "you go left", )
+                choice = choose.two_options("Do you want to go left or right? You can also view stats.", "left", "right")
                 current_index = random.randint(0, len(possible_rooms) - 1)
                 current_room = possible_rooms[current_index]
                 print(current_room)
-                choice = choose.two_options("Would you like to look around?", "yes", "no")
+                choice = choose.three_options("Would you like to look around? You can also view your stats", "yes", "no", "stats")
                 if choice == "yes" and current_index == 0 and "Rusted Axe" not in inventory:
                     inventory.append("Rusted Axe")
                     saveData['inventory'] = inventory
                     print(f"You find an axe lying on the floor.\nIt's covered in rust\nYou now have {inventory} in your inventory :)")
                     print("You leave the room")
+                    continue
+                elif choice == 'stats':
+                    existing = {}
+                    existing['inventory'] = inventory
+                    existing['bought_key'] = bought_key
+                    existing['door_open'] = door_open
+
+                    minutes = 0
+                    seconds = 0
+                    try:
+                        # main.py starts the tracker, so assume it's available here.
+                        import functions.playtimetracker as playtimetracker
+                        minutes, seconds = playtimetracker.tracker.get()
+                    except Exception:
+                        # Fallback to saved values if the live tracker isn't reachable.
+                        try:
+                            saved = gameSave.load()
+                            minutes = int(saved.get('playtime_minutes', 0))
+                            seconds = int(saved.get('playtime_seconds', 0))
+                        except Exception:
+                            minutes = 0
+                            seconds = 0
+
+                    existing['playtime_minutes'] = minutes
+                    existing['playtime_seconds'] = seconds
+
+                    gameSave.save(existing)
+                    gameSave.read()
                     continue
                 elif choice == "yes" and current_index == 0 and "Rusted Axe" in inventory:
                     print("You enter again.\nThe room looks just like it did when you left it.\nYou check around the room again, the axe that was there didn't magically reappear.")
@@ -155,10 +183,19 @@ def floor_one():
         print("Game interrupted by user.")
         saveChoice = choose.two_options("Would you like to save?", 'yes', 'no')
         if saveChoice == 'yes':
-            saveData['inventory'] = inventory
-            saveData['bought_key'] = bought_key
-            saveData['door_open'] = door_open
-            gameSave.save(saveData)
+            # Load existing save to preserve any additional fields (eg. playtime)
+            try:
+                existing = gameSave.load()
+            except Exception:
+                existing = {}
+
+            existing['inventory'] = inventory
+            existing['bought_key'] = bought_key
+            existing['door_open'] = door_open
+            try:
+                gameSave.save(existing)
+            except Exception as e:
+                print(f"Failed to save game: {e}")
             print("Game saved successfully. Goodbye!")
             exit()
         else:
