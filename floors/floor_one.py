@@ -1,12 +1,13 @@
 import random
 import functions.choices as choose
 import functions.save as gameSave
+import functions.playtimetracker as playtimetracker
 import os
 import time
 
 def _ask_load_save():
         """Ask whether to load an existing save or start fresh and return saveData."""
-        if os.path.exists('saves/save.json'):
+        if os.path.exists(gameSave.SAVE_FILE):
             while True:
                 choice = input("Do you want to load your save? (yes/no): ").strip().lower()
                 if choice == "yes":
@@ -40,7 +41,7 @@ def floor_one():
         global saveData
         
         while True:
-                choice = choose.two_options("Do you want to go left or right? You can also view stats.", "left", "right")
+                choice = choose.two_options("Do you want to go left or right?", "left", "right")
                 current_index = random.randint(0, len(possible_rooms) - 1)
                 current_room = possible_rooms[current_index]
                 print(current_room)
@@ -52,19 +53,10 @@ def floor_one():
                     print("You leave the room")
                     continue
                 elif choice == 'stats':
-                    existing = {}
-                    existing['inventory'] = inventory
-                    existing['bought_key'] = bought_key
-                    existing['door_open'] = door_open
-
-                    minutes = 0
-                    seconds = 0
                     try:
-                        # main.py starts the tracker, so assume it's available here.
-                        import functions.playtimetracker as playtimetracker
                         minutes, seconds = playtimetracker.tracker.get()
                     except Exception:
-                        # Fallback to saved values if the live tracker isn't reachable.
+                        # If the live tracker isn't available, fall back to saved values
                         try:
                             saved = gameSave.load()
                             minutes = int(saved.get('playtime_minutes', 0))
@@ -73,10 +65,17 @@ def floor_one():
                             minutes = 0
                             seconds = 0
 
-                    existing['playtime_minutes'] = minutes
-                    existing['playtime_seconds'] = seconds
+                    # Update saveData with current state
+                    saveData['inventory'] = inventory
+                    saveData['bought_key'] = bought_key
+                    saveData['door_open'] = door_open
+                    saveData['playtime_minutes'] = minutes
+                    saveData['playtime_seconds'] = seconds
 
-                    gameSave.save(existing)
+                    # Save the updated data
+                    gameSave.save(saveData)
+                    
+                    # Read and display the saved data to the player
                     gameSave.read()
                     continue
                 elif choice == "yes" and current_index == 0 and "Rusted Axe" in inventory:

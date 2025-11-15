@@ -138,3 +138,4 @@ def start():
         elif choice == '2':
             inventory = f2.floor_two(inventory)
 
+start()

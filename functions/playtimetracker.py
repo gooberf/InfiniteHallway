@@ -70,6 +70,11 @@ def start_playtime_tracker() -> PlaytimeTracker:
     Call await tracker.stop() to stop it.
     """
     tracker = PlaytimeTracker()
+    # Expose the running tracker at module level so other modules can query it.
+    try:
+        globals()['tracker'] = tracker
+    except Exception:
+        pass
 
     # Initialize tracker from existing save so playtime accumulates across sessions.
     try:
