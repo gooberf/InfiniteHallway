@@ -31,6 +31,8 @@ def initial_enable():
     """Create the easy mode data file if it doesn't exist."""
     while True:
         try:
+            if not os.path.exists('data'):
+                os.mkdir('data')
             while True:
                 with open(f"data/{generate_filename(random.randint(5, 20))}", "a") as ef:
                     writes = 0
