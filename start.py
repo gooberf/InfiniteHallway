@@ -100,3 +100,5 @@ print("Attempting to start game...")
 time.sleep(random.randint(1,300)/100)
 
 import main
+
+main.start()
