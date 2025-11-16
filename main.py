@@ -177,6 +177,7 @@ def start():
             mods = []
             print("Scanning mods folder...")
             time.sleep(random.randint(1,50)/100)
+            numMods = 0
             for i in os.listdir('mods'):
                 mods.append(i)
             if mods == []:
@@ -189,6 +190,11 @@ def start():
                         pass
                     else:
                         cleanMods.append(i.removesuffix('.py'))
+                        numMods += 1
+                if numMods == 1:
+                    print(f"Found {numMods} mod.")
+                else:
+                    print(f"Found {numMods} mods.")
                 loadMod = choose.list_options("Which mod would you like to load?", cleanMods)
                 chosenMod = loadMod + ".py"
                 file_path = f'mods/{chosenMod}'
