@@ -16,10 +16,10 @@ def _ask_load_save():
                     return gameSave.load()
                 if choice == "no":
                     print("Starting fresh :)")
-                    return {"inventory": [], "bought_key": False, "door_open": False}
+                    return {"inventory": [], "bought_key": False, "door_open": False, "floor": 1}
                 print("Choices are 'yes' or 'no'. Please answer correctly.")
         else:
-            return {"inventory": [], "bought_key": False, "door_open": False}
+            return {"inventory": [], "bought_key": False, "door_open": False, "floor": 1}
 
 
 possible_rooms = [  
@@ -44,7 +44,9 @@ def floor_one():
         inventory = saveData['inventory']
         bought_key = saveData['bought_key']
         door_open = saveData['door_open']
-
+        floor = saveData['floor']
+        if not floor == 1:
+            return inventory
         #global bought_key
         #global door_open
         #global inventory
@@ -69,6 +71,7 @@ def floor_one():
                     saveData['inventory'] = inventory
                     saveData['bought_key'] = bought_key
                     saveData['door_open'] = door_open
+                    saveData['floor'] = 1
                     gameSave.save(saveData)
                     
                     # Display formatted statistics
@@ -221,15 +224,16 @@ def floor_one():
         if saveChoice == 'yes':
             # Load existing save to preserve any additional fields (eg. playtime)
             try:
-                existing = gameSave.load()
+                saveData = gameSave.load()
             except Exception:
-                existing = {}
+                saveData = {}
 
-            existing['inventory'] = inventory
-            existing['bought_key'] = bought_key
-            existing['door_open'] = door_open
+            saveData['inventory'] = inventory
+            saveData['bought_key'] = bought_key
+            saveData['door_open'] = door_open
+            saveData['floor'] = 1
             try:
-                gameSave.save(existing)
+                gameSave.save(saveData)
             except Exception as e:
                 print(f"Failed to save game: {e}")
             print("Game saved successfully. Goodbye!")

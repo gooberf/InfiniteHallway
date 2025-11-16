@@ -12,7 +12,7 @@ def save(data):
     if not os.path.exists(SAVES_DIR):
         os.makedirs(SAVES_DIR)
     with open(SAVE_FILE, 'w') as f:
-        json.dump(data, f)
+        json.dump(data, f, indent=4)
 
 def load():
     try:
@@ -24,7 +24,8 @@ def load():
         return {
             'inventory': [],
             'bought_key': False,
-            'door_open': False
+            'door_open': False,
+            'floor': 1
         }
 def read():
     with open(SAVE_FILE, 'r') as f:

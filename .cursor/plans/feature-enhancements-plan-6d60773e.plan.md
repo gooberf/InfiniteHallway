@@ -135,7 +135,7 @@ This plan outlines various features and improvements that can be added to enhanc
 3. More room variety and puzzle rooms
 4. Configuration menu improvements
 
-### Low Priority (Nice to Have)
+### Low Priority (Nice to Have
 
 1. Procedural generation
 2. Modding support
@@ -157,8 +157,4 @@ New files that would be created:
 
 ### To-dos
 
-- [ ] make statistics command (floor one) into a function (maybe in save.py?)
-- [ ] make statistics display actual, formatted player stats instead of just the json file contents
-- [ ] add color to the game
-- [ ] add more splash texts (put ideas for them in splash_ideas.txt instead of splash.py, but look at splash.py for an idea on how they should be)
-- [ ] write the rest of readme.html and main.css (the game logo is in assets/img)
+- [ ] 

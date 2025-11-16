@@ -166,7 +166,10 @@ def start():
                 inventory = f1.floor_one()
             elif choice == '2':
                 inventory = f2.floor_two(inventory)
-    except:
-        console.print_exception(show_locals=True)
-        exit()
+    except Exception as e:
+        if e == KeyboardInterrupt:
+            exit()
+        else:
+            console.print_exception(show_locals=True)
+            exit()
 start()
