@@ -28,7 +28,7 @@ When developing a mod for The Infinite Hallway, you'll most likely use the follo
 ### Usage
 Each function has their own usage. If you're confused, see the example mod left in `/mods`
 
-#### `choices.py`
+#### choices.py
 
 `two_options()`:
 
