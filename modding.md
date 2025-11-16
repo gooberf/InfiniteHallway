@@ -46,3 +46,29 @@ elif choice == "Answer Two":
 `three_options()`
 
 ```python
+import functions.choices as cho
+
+choice = cho.two_options("Question", "Answer One", "Answer Two", "Answer Three")
+
+if choice == "Answer One":
+    print("You picked option one!")
+elif choice == "Answer Two":
+    print("You picked option two!")
+elif choice == "Answer Three":
+    print("You picked option three!")
+```
+
+`four_options()`
+```python
+import functions.choices as cho
+
+choice = cho.two_options("Question", "Answer One", "Answer Two", "Answer Three", "Answer four")
+
+if choice == "Answer One":
+    print("You picked option one!")
+elif choice == "Answer Two":
+    print("You picked option two!")
+elif choice == "Answer Three":
+    print("You picked option three!")
+elif choice == "Answer Four":
+    print("You picked option four!")
