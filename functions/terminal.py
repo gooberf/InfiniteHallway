@@ -31,4 +31,4 @@ def logTraceback(msg):
         try:genTraceback(msg)
         except Exception:
             log = traceback.format_exc()
-            tb.write(f"I'm sorry, but an uncaught exception occured!\n{log}")
+            tb.write(f"I'm sorry, but an uncaught exception occured!\n\n{log}")

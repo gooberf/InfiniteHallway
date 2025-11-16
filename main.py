@@ -143,8 +143,6 @@ def start():
             os.system('cls')
         else:
             os.system('clear')
-        print(datetime.now().hour)
-        print(datetime.now().minute)
         mainMenuOption = choose.three_options("main menu placeholder", "start", "reset config", "dev tools")
             
 

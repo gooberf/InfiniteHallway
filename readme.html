@@ -1,13 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Infinite Hallway</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Infinite Hallway - A Text Adventure Game</title>
         <link href="main.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Orbitron:wght@400..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h1>>The Infinite Hallway_</h1>
+        <div class="container">
+            <header>
+                <h1>&gt;The Infinite Hallway_</h1>
+            </header>
+
+            <main>
+                <section class="intro">
+                    <p class="description">A small, playful text-adventure / learning project written in Python. It was created as an interactive way to explore basic Python concepts and to practice reading and modifying a simple codebase.</p>
+                </section>
+
+                <section class="features">
+                    <h2>Features</h2>
+                    <ul>
+                        <li>Simple, file-based Python game with modular code under <code>floors/</code> and <code>functions/</code>.</li>
+                        <li>Lightweight and easy to run locally with a standard Python 3 interpreter.</li>
+                        <li><strong>Optional</strong> Ollama LLM integration for AI-enhanced responses</li>
+                        <li>Color-coded terminal output with colorama</li>
+                        <li>Interactive choice system with 2, 3, and 4-option menus</li>
+                        <li>Persistent configuration system for game preferences</li>
+                        <li>Save/load system to continue your adventure</li>
+                        <li>Playtime tracking</li>
+                    </ul>
+                </section>
+
+                <section class="quickstart">
+                    <h2>Quick Start</h2>
+                    <ol>
+                        <li>Make sure you have Python 3.8+ installed. Verify with:
+                            <pre><code>python --version</code></pre>
+                        </li>
+                        <li>From the repository root, run the main script:
+                            <pre><code>python main.py</code></pre>
+                            Or use the start script:
+                            <pre><code>python start.py</code></pre>
+                        </li>
+                        <li>Follow the on-screen prompts to play.</li>
+                    </ol>
+                    <p class="note">If your environment uses a different python launcher (for example <code>python3</code>), use that instead.</p>
+                </section>
+
+                <section class="llm-setup">
+                    <h2>LLM Setup</h2>
+                    <p class="warning">⚠️ <strong>Note</strong>: LLM functionality is currently not yet implemented. The setup prompts will work, but LLM responses will not be used in the game.</p>
+                    <ol>
+                        <li>Download <a href="https://ollama.com" target="_blank" rel="noopener noreferrer">Ollama</a></li>
+                        <li>Ensure Ollama is running when starting <code>main.py</code></li>
+                    </ol>
+                    <h3>Revert LLM Choice</h3>
+                    <p>If you want to be asked again whether or not to enable LLMs, delete the <code>LLMsEnabled</code> file in <code>/config</code> or type <code>reset config</code> in the main menu.</p>
+                </section>
+
+                <section class="project-layout">
+                    <h2>Project Layout</h2>
+                    <div class="layout-grid">
+                        <div class="layout-item">
+                            <h3>Core Files</h3>
+                            <ul>
+                                <li><code>main.py</code> - entry point for running the game; handles LLM setup and main menu flow.</li>
+                                <li><code>start.py</code> - the file the user runs; checks all requirements and starts game</li>
+                                <li><code>Infinite Hall.py</code> - (older copy / alternate entry; inspect before running).</li>
+                            </ul>
+                        </div>
+                        <div class="layout-item">
+                            <h3>Game Content</h3>
+                            <ul>
+                                <li><code>floors/</code> - actual game scripts.
+                                    <ul>
+                                        <li><code>floor_one.py</code> - script for the first floor</li>
+                                        <li><code>floor_two.py</code> - script for the second floor (WIP)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="layout-item">
+                            <h3>Helper Functions</h3>
+                            <ul>
+                                <li><code>functions/</code> - helper modules:
+                                    <ul>
+                                        <li><code>choices.py</code> - interactive menu system (2, 3, and 4-option choices)</li>
+                                        <li><code>save.py</code> - save/load system and statistics display</li>
+                                        <li><code>terminal.py</code> - cross-platform terminal clearing</li>
+                                        <li><code>deleteConfig.py</code> - configuration cleanup utilities</li>
+                                        <li><code>easyMode.py</code> - activates the (totally real) easy mode</li>
+                                        <li><code>playtimetracker.py</code> - tracks playtime</li>
+                                        <li><code>splash.py</code> - displays random splash texts</li>
+                                        <li><code>merchantChat.py</code> - handles AI chat with the Merchant (WIP)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="layout-item">
+                            <h3>Data & Config</h3>
+                            <ul>
+                                <li><code>config/</code> - persistent configuration storage (auto-created on first run)
+                                    <ul>
+                                        <li><code>LLMsEnabled</code> - tracks LLM enablement status</li>
+                                        <li><code>model</code> - stores the selected Ollama model name</li>
+                                        <li><code>easyMode</code> - easy mode setting</li>
+                                        <li><code>quickStart</code> - quick start preference</li>
+                                    </ul>
+                                </li>
+                                <li><code>saves/</code> - persistent data storage
+                                    <ul>
+                                        <li><code>save.json</code> - your save file</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="layout-item">
+                            <h3>Tools & Assets</h3>
+                            <ul>
+                                <li><code>tools/</code>
+                                    <ul>
+                                        <li><code>install_dependancies.bat</code> - installs python packages required for the game to run</li>
+                                    </ul>
+                                </li>
+                                <li><code>assets/img/</code>
+                                    <ul>
+                                        <li><code>logo.png</code> - game logo</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="contributing">
+                    <h2>Contributing</h2>
+                    <p>This is a small, informal project — contributions and experiments are welcome.</p>
+                    <ul>
+                        <li>Run the game and explore how functions in <code>functions/choices.py</code> and the files under <code>floors/</code> work.</li>
+                        <li>Add small features or refactor to make code clearer. Please keep changes focused and provide short commit messages.</li>
+                    </ul>
+                </section>
+
+                <section class="disclaimer">
+                    <p class="warning-text">⚠️ <strong>Disclaimer</strong>: We are not liable for any storage space that is taken up. The easy mode is a lie. You have been warned. You brought this on yourself if you accept easy_mode.</p>
+                </section>
+
+                <section class="license">
+                    <h2>License</h2>
+                    <p>This repository does not include a license file. If you plan to share or publish, add a LICENSE that matches how you want others to use your code.</p>
+                </section>
+
+                <footer>
+                    <p>Enjoy exploring the Infinite Hallway!</p>
+                    <p>Made with love by <a href="https://github.com/gooberf and https://github.com/hackrxd" target="_blank" rel="noopener noreferrer">goober and hackr <3</a></p>
+                    <!--oh god why is cursor actually so good at making html files-->
+                </footer>
+            </main>
+        </div>
     </body>
 </html>

@@ -7,6 +7,11 @@ import os
 import traceback
 import rich
 from rich.console import Console
+from colorama import Fore, Style
+import colorama
+
+# Initialize colorama
+colorama.init(autoreset=True)
 
 console = Console()
 
@@ -73,6 +78,6 @@ def displaySplash():
             except:
                 console.print_exception(show_locals=True)
         else:
-            print(splash)
+            print(f"{Fore.MAGENTA}{Style.BRIGHT}{splash}{Style.RESET_ALL}")
     time.sleep(3)
     terminal.clear()
