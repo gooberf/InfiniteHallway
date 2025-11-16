@@ -12,6 +12,7 @@ import datetime
 import importlib
 import rich
 import random
+import functions.terminal as term
 from datetime import datetime
 from rich.traceback import install
 from rich.console import Console
@@ -184,6 +185,7 @@ def start():
                     cleanMods.append(i.removesuffix('.py'))
                 loadMod = choose.list_options("Which mod would you like to load?", cleanMods)
                 chosenMod = loadMod + ".py"
+                term.clear()
                 chosenMod.main()
     except Exception as e:
         if e == KeyboardInterrupt:
