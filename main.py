@@ -1,3 +1,4 @@
+from ntpath import isdir
 import traceback
 import functions.choices as choose
 import os
@@ -12,6 +13,8 @@ import datetime
 import importlib
 import rich
 import random
+import importlib.util
+import sys
 import functions.terminal as term
 from datetime import datetime
 from rich.traceback import install
@@ -181,12 +184,34 @@ def start():
                 exit()
             else:
                 cleanMods = []
-                if i in mods:
-                    cleanMods.append(i.removesuffix('.py'))
+                for i in mods:
+                    if os.path.isdir(i):
+                        pass
+                    else:
+                        cleanMods.append(i.removesuffix('.py'))
                 loadMod = choose.list_options("Which mod would you like to load?", cleanMods)
                 chosenMod = loadMod + ".py"
-                term.clear()
-                chosenMod.main()
+                file_path = f'mods/{chosenMod}'
+                module_name = loadMod
+
+                try:
+                    # Set up the module specification
+                    spec = importlib.util.spec_from_file_location(module_name, file_path)
+                    if spec is None:
+                        raise FileNotFoundError(f"Could not find module spec for {file_path}")
+                        
+                    # Create the module and load it
+                    module = importlib.util.module_from_spec(spec)
+                    sys.modules[module_name] = module
+                    spec.loader.exec_module(module)
+
+                    # Now you can call the main function from the imported module
+                    term.clear()
+                    module.main() 
+
+                except (FileNotFoundError, AttributeError) as e:
+                    print(f"Error loading or running mod: {e}")
+                
     except Exception as e:
         if e == KeyboardInterrupt:
             exit()
