@@ -26,3 +26,11 @@ def main():
     time.sleep(1)
     print("You begin walking down the hallway, it never seems to end.")
     time.sleep(1)
+    print("You walk up to one of the many doors.")
+    opendr = cho.two_options("Do you open the door?", "yes", "no")
+    if opendr == "yes":
+        print("You carefully reach for the doorknob.")
+        time.sleep(1)
+        print("You open the door, revealing a-")
+        term.logTraceback("Hm.. how do I fix this..? Do I continue writing the example mod, or am I too tired from writing modding docs? We will never know. If you were actually interested in learing the modding for this game, just read modding.md")
+        exit()
