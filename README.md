@@ -55,6 +55,7 @@ If you want to be asked again whether or not to enable LLMs, delete the `LLMsEna
 - `tools/`
   - `install_dependancies.bat` - installs python packages required for the game to run
 - `start.py` - the file the user runs; checks all requirements and starts game
+- `mods` - a folder the game scans upon startup, allows for custom floors. check [modding](/modding.md)
 ###### btw we are not liable for any storage space that is taken up. the easy mode is a lie. you have been warned
 ###### you brought this on yourself if you accept easy_mode.
 ## Contributing
