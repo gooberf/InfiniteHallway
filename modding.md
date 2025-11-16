@@ -43,7 +43,7 @@ elif choice == "Answer Two":
     print("You picked option two!")
 ```
 
-`three_options()`
+`three_options()`:
 
 ```python
 import functions.choices as cho
@@ -58,7 +58,8 @@ elif choice == "Answer Three":
     print("You picked option three!")
 ```
 
-`four_options()`
+`four_options()`:
+
 ```python
 import functions.choices as cho
 
