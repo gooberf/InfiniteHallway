@@ -102,6 +102,16 @@ except:
         print("Quitting...")
         exit()
 
+mods = 0
+print("Scanning for mods...")
+time.sleep(random.randint(1,100)/100)
+for i in os.listdir('mods'):
+    mods += 1
+if mods == 1:
+    print(f"Detected {mods} mod")
+else:
+    print(f"Detected {mods} mods")
+
 print("Attempting to start game...")
 time.sleep(random.randint(1,100)/100)
 

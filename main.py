@@ -1,3 +1,4 @@
+import traceback
 import functions.choices as choose
 import os
 import ollama
@@ -8,11 +9,13 @@ import functions.easyMode as em
 import functions.playtimetracker as ptt
 import functions.splash as splash
 import datetime
-from datetime import datetime
 import importlib
 import rich
+import random
+from datetime import datetime
 from rich.traceback import install
 from rich.console import Console
+
 
 install(show_locals=True)
 
@@ -143,7 +146,7 @@ def start():
             os.system('cls')
         else:
             os.system('clear')
-        mainMenuOption = choose.three_options("main menu placeholder", "start", "reset config", "dev tools")
+        mainMenuOption = choose.four_options("main menu placeholder", "start", "reset config", "load mod", "dev tools")
             
 
         if mainMenuOption == "start":
@@ -166,6 +169,22 @@ def start():
                 inventory = f1.floor_one()
             elif choice == '2':
                 inventory = f2.floor_two(inventory)
+        elif mainMenuOption == 'load mod':
+            mods = []
+            print("Scanning mods folder...")
+            time.sleep(random.randint(1,50)/100)
+            for i in os.listdir('mods'):
+                mods.append(i)
+            if mods == []:
+                print("There are no mods to load. Quitting...")
+                exit()
+            else:
+                cleanMods = []
+                if i in mods:
+                    cleanMods.append(i.removesuffix('.py'))
+                loadMod = choose.list_options("Which mod would you like to load?", cleanMods)
+                chosenMod = loadMod + ".py"
+                chosenMod.main()
     except Exception as e:
         if e == KeyboardInterrupt:
             exit()

@@ -53,3 +53,37 @@ def three_options(text, option1, option2, option3, error_message="Invalid", inpu
             return picked_option
         else:
             print(f'{Fore.RED}{error_message}{Style.RESET_ALL}')
+
+# a function to give the player options from a Python list
+def list_options(text, options_list, error_message="Invalid", input_func=input):
+    """
+    Display choices from a Python list and return the selected option.
+    
+    Args:
+        text: The prompt/question text to display
+        options_list: A list of strings representing the available options
+        error_message: Message to display on invalid input (default: "Invalid")
+        input_func: Function to use for input (default: input)
+    
+    Returns:
+        The selected option as a string (lowercase)
+    """
+    if not options_list or len(options_list) == 0:
+        raise ValueError("options_list must contain at least one option")
+    
+    # Convert all options to lowercase for comparison
+    options_lower = [opt.lower() for opt in options_list]
+    
+    while True:
+        # Build the options display string
+        options_display = '\n'.join([f'{Fore.GREEN}{opt}{Style.RESET_ALL}' for opt in options_list])
+        
+        picked_option = input_func(f'{Fore.CYAN}{"=" * 32}{Style.RESET_ALL}\n{Fore.YELLOW}{text}{Style.RESET_ALL}\n{Fore.CYAN}{"-" * 32}{Style.RESET_ALL}\n{options_display}\n{Fore.CYAN}{"=" * 32}{Style.RESET_ALL}\n').lower()
+        
+        if picked_option in options_lower:
+            clear_term.clear()
+            # Return the original (non-lowercase) option from the list
+            index = options_lower.index(picked_option)
+            return options_list[index]
+        else:
+            print(f'{Fore.RED}{error_message}{Style.RESET_ALL}')
