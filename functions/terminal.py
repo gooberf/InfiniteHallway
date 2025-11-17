@@ -1,3 +1,4 @@
+from multiprocessing import Value
 import os
 import rich
 from rich.console import Console
@@ -17,6 +18,7 @@ def run(cmd):
     os.system(cmd)
     
 def genTraceback(msg):
+    raise ValueError(msg)
     raise ValueError(msg)
 
 def print_traceback(msg):
