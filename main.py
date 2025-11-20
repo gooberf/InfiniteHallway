@@ -213,6 +213,11 @@ def start():
 
                     # Now you can call the main function from the imported module
                     term.clear()
+                    try: 
+                        module.splash()
+                    except Exception: 
+                        traceback.format_exc(Exception)
+                        #splash.displaySplash()
                     module.main() 
 
                 except (FileNotFoundError, AttributeError) as e:

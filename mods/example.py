@@ -1,6 +1,6 @@
 import functions.choices as cho
 import functions.terminal as term
-import functions.splash as splash
+import functions.splash as splashFunc
 import time
 
 splashes = [
@@ -9,8 +9,10 @@ splashes = [
     "You're here to figure out what each function looks like, aren't ya?"
 ]
 
+def splash():
+    splashFunc.displaySplash(splashes)
+
 def main():
-    splash.displaySplash(splashes)
     print("You wake up, in a strange builing.")
     time.sleep(1)
     print("You leave the room you woke up in, being greeted by a seemingly endless hallway.")
