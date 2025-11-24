@@ -1,3 +1,4 @@
+from multiprocessing import Value
 import os
 import rich
 from rich.console import Console
@@ -16,13 +17,27 @@ def clear():
 def run(cmd):
     os.system(cmd)
     
+def continuePlay():
+    raise ValueError("Failed to continue playing.")
+
+def nextDialogue():
+    raise TypeError("Unexpected indent in terminal.py, line 24")
+
+def choice():
+    raise AttributeError("Function 'choice()' has no attribute 'display_two'")
+
 def genTraceback(msg):
     raise ValueError(msg)
+    choice()
+    nextDialogue()
+    continuePlay()
+
 
 def print_traceback(msg):
     try:
         genTraceback(msg)
     except:
+        genTraceback(msg)
         console.print_exception(show_locals=True)
 
 def logTraceback(msg):
