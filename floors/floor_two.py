@@ -70,7 +70,7 @@ def floor_two(inventory):
             choice = cho.four_options(f"{inventory}\nMove up the hall, into the room on your right, or into the room on your left? You can also view your stats", "up", "left", "right", "stats")
             if choice == "up":
                 ver_pos += 1
-                print("You go up the hall")
+                print("You go up the hall") 
                 continue
             elif choice == "left": # room a
                 print(f"You enter the room on your left.\n{possible_rooms[0]}\n--------------------\nThe walls close in again, and go back out. You feel a pulse as they do.\nIt's as if the room is breathing.")
