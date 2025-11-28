@@ -9,6 +9,7 @@ import rich
 from rich.console import Console
 from colorama import Fore, Style
 import colorama
+import webbrowser
 
 # Initialize colorama
 colorama.init(autoreset=True)
@@ -22,10 +23,6 @@ todayWeek = today.weekday()
 day_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
 tracebackMessage = "hackr broke something again"
-
-def generateTraceback():
-    raise ValueError(tracebackMessage)
-
 
 splashTexts = [
             "The hallway fills you with DETERMINATION", 
@@ -83,6 +80,7 @@ def displaySplash(splashes=[]):
         elif thing == "31":
             print("Congratulations, you failed.\nos.remove('floors/floor_one.py')")
             deletef1 = True
+            webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
             return deletef1
         else:     
               splash = random.choice(splashTexts)
