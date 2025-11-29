@@ -58,14 +58,22 @@ def _show_stats(inventory):
         pass
 
     # Print the saved data for the player
-    try:
-        save.read()
-    except Exception:
-        print(saveData)
+
+    # why???
+
+    #try:
+    #    save.read()
+    #except Exception:
+    #    print(saveData)
+    save.display_stats(inventory)
+
+saveData = save.load()
 
 def floor_two(inventory):
     global ver_pos
     while True:
+        if saveData['floor'] != 2:
+            return inventory
         if ver_pos == 0:
             choice = cho.four_options(f"{inventory}\nMove up the hall, into the room on your right, or into the room on your left? You can also view your stats", "up", "left", "right", "stats")
             if choice == "up":

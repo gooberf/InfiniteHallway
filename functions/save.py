@@ -27,10 +27,13 @@ def load():
             'door_open': False,
             'floor': 1
         }
-def read():
-    with open(SAVE_FILE, 'r') as f:
-        data = json.load(f)
-        print(data)
+
+# read() isn't relevant, as it just prints the file, so i just commented it out
+
+#def read():
+#    with open(SAVE_FILE, 'r') as f:
+#       data = json.load(f)
+#        print(data)
 
 def display_stats(inventory=None):
     """
@@ -85,14 +88,15 @@ def display_stats(inventory=None):
     print()
     
     # Progress display
-    bought_key = saveData.get('bought_key', False)
-    door_open = saveData.get('door_open', False)
-    print(f"{Fore.YELLOW}Progress:{Style.RESET_ALL}")
-    print(f"  Key purchased: {Fore.GREEN if bought_key else Fore.RED}{'Yes' if bought_key else 'No'}{Style.RESET_ALL}")
-    print(f"  Door opened: {Fore.GREEN if door_open else Fore.RED}{'Yes' if door_open else 'No'}{Style.RESET_ALL}")
+    if saveData["floor"] == 1:
+        bought_key = saveData.get('bought_key', False)
+        door_open = saveData.get('door_open', False)
+        print(f"{Fore.YELLOW}Progress:{Style.RESET_ALL}")
+        print(f"  Key purchased: {Fore.GREEN if bought_key else Fore.RED}{'Yes' if bought_key else 'No'}{Style.RESET_ALL}")
+        print(f"  Door opened: {Fore.GREEN if door_open else Fore.RED}{'Yes' if door_open else 'No'}{Style.RESET_ALL}")
     
     # Floor 2 progress (if exists)
-    if 'A_echo_taken' in saveData or 'B_frag_Taken' in saveData or 'C_hollow_Taken' in saveData:
+    if saveData['floor'] == 2:
         print(f"{Fore.YELLOW}  Floor 2 Items:{Style.RESET_ALL}")
         if saveData.get('A_echo_taken'):
             print(f"    {Fore.GREEN}- Echo (taken){Style.RESET_ALL}")

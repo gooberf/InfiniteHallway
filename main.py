@@ -4,6 +4,7 @@ import functions.choices as choose
 import os
 import ollama
 import time
+import floors.floor_three as f3
 import functions.deleteConfig as delConfig
 import floors.floor_two as f2
 import functions.easyMode as em
@@ -144,7 +145,7 @@ def start():
                 if quick == "yes":
                     f.write("1")
                 else:
-                    f.write(0)
+                    f.write("0")
 
         if os.name == 'nt':
             os.system('cls')
@@ -162,6 +163,7 @@ def start():
             import floors.floor_one as f1
             inventory = f1.floor_one()
             inventory = f2.floor_two(inventory)
+            inventory = f3.start(inventory)
         elif mainMenuOption == "reset config":
             delConfig.delete_config()
             print("Please restart the program to set up configuration again.")

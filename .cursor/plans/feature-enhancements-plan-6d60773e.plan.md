@@ -154,7 +154,3 @@ New files that would be created:
 - `data/achievements.json` - Achievement definitions
 - `data/items.json` - Item database with descriptions
 - `data/npcs.json` - NPC definitions and dialogue trees
-
-### To-dos
-
-- [ ] 
