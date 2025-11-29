@@ -30,6 +30,9 @@ except:
 try: import rich
 except: missingDependencies.append("rich")
 
+try: import pygame
+except: missingDependencies.append('pygame')
+
 if missingDependencies == []:
     print("You have all required dependancies!")
 else:
@@ -57,6 +60,9 @@ except: failed_installs.append('ollama')
 
 try: import rich
 except: failed_installs.append('rich')
+
+try: import pygame
+except: failed_installs.append('pygame')
 
 if failed_installs == []: print("All dependancies successfully installed!")
 else: 
