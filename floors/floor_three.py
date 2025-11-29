@@ -6,7 +6,7 @@ import os
 import random
 import pathlib
 from pygame._sdl2 import video
-import functions.choices as cho
+from functions.choices import two_options
 
 # 1. Initialize Pygame
 def start(inventory):

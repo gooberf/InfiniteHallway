@@ -161,8 +161,8 @@ def start():
                 importlib.reload("floors.floor_one")
             time.sleep(0.3)
             import floors.floor_one as f1
-            inventory = f1.floor_one()
-            inventory = f2.floor_two(inventory)
+            inventory = f1.floor_one(dev=False)
+            inventory = f2.floor_two(inventory, dev=False)
             inventory = f3.start(inventory)
         elif mainMenuOption == "reset config":
             delConfig.delete_config()
@@ -172,9 +172,9 @@ def start():
             import floors.floor_one as f1
             choice = choose.three_options("What floor would you like to begin at?", "1", "2", "3")
             if choice == '1':
-                inventory = f1.floor_one()
+                inventory = f1.floor_one(dev=True)
             elif choice == '2':
-                inventory = f2.floor_two(inventory)
+                inventory = f2.floor_two(inventory, dev=True)
             elif choice == '3':
                 inventory = f3.start(inventory)
         elif mainMenuOption == 'load mod':

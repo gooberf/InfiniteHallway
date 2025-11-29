@@ -29,24 +29,24 @@ possible_rooms = [
     "It's bright. The room is loud aswell. It overwhelms you."
 ]
 
-def floor_one():
+def floor_one(dev):
     try:
-        
-        while True:
-            try:
-                saveData = _ask_load_save()
-                break
-            except KeyboardInterrupt:
-                terminal.clear()
-                print("just answer the damn question")
-                
+        if not dev:
+            while True:
+                try:
+                    saveData = _ask_load_save()
+                    break
+                except KeyboardInterrupt:
+                    terminal.clear()
+                    print("just answer the damn question")
+                    
 
-        inventory = saveData['inventory']
-        bought_key = saveData['bought_key']
-        door_open = saveData['door_open']
-        floor = saveData['floor']
-        if not floor == 1:
-            return inventory
+            inventory = saveData['inventory']
+            bought_key = saveData['bought_key']
+            door_open = saveData['door_open']
+            floor = saveData['floor']
+            if not floor == 1:
+                return inventory
         #global bought_key
         #global door_open
         #global inventory
@@ -175,6 +175,8 @@ def floor_one():
                                         print(f"{Fore.MAGENTA}{Style.BRIGHT}You enter the 'floor two', determining which way to go next.{Style.RESET_ALL}")
                                         inventory.remove("Rusted Axe")
                                         saveData['inventory'] = inventory
+                                        saveData['floor'] = 2
+                                        gameSave.save([saveData])
                                         return inventory
                                     if choice == "no":
                                         print(f"{Fore.WHITE}You turn back, going to the hallways again.{Style.RESET_ALL}")
@@ -200,6 +202,8 @@ def floor_one():
                                         print(f"{Fore.MAGENTA}{Style.BRIGHT}You enter the 'floor two', determining which way to go next.{Style.RESET_ALL}")
                                         inventory.remove("Rusted Axe")
                                         saveData['inventory'] = inventory
+                                        saveData['floor'] = 2
+                                        gameSave.save(saveData)
                                         return inventory
                                     if choice == "no":
                                         print(f"{Fore.WHITE}You turn back, going to the hallways again.{Style.RESET_ALL}")
