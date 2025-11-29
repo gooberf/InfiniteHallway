@@ -9,19 +9,19 @@ def start(inventory):
     screen = pygame.display.set_mode((width, height))
 
     # 3. Set the window title (optional)
-    pygame.display.set_caption("???")
+    pygame.display.set_caption("The hallway never ends...")
 
     # 4. Game loop
     running = True
     while running:
-        print("???")
+        print("The hallway never ends...")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_f:
-                    print("HAHA DEVELOPED WITH PYGAME COULDN'T HAVE SEEN THIS COMING!!!")
+                    print("The hallway.. never.. came to an end...")
                     running = False
 
         # Game logic and drawing goes here
