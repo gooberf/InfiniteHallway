@@ -24,12 +24,7 @@ def start(inventory):
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_9 and event.key == pygame.K_LCTRL:
-                    print("So, you scour the code, hm? Looking for secrets, are we?")
-                    time.wait(1)
-                    print("Not happening.")
-                    time.wait(1)
-                    os.remove(pathlib.Path(__file__).parent.parent)
+                pass
                     
 
         screen.fill((0, 0, 0))  # Fill the screen with black color
