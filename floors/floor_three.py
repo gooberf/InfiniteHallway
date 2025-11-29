@@ -21,6 +21,7 @@ def start(inventory):
     run = True
     while run:
         for event in pygame.event.get():
+            window.position = (random.randint(500, 700), random.randint(900, 1000))
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYUP:
