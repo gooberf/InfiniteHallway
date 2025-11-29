@@ -55,7 +55,7 @@ def start(inventory):
                         webbrowser.open("steam://launch/698780")
                         time.sleep(0.5)
                         webbrowser.open("steam://store/698780")
-                    running = False
+                    run = False
 
         # Game logic and drawing goes here
         # Fill the screen with a color (e.g., black)
