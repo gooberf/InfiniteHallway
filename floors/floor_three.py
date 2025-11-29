@@ -23,7 +23,7 @@ def start(inventory):
         for event in pygame.event.get():
             window.position = (random.randint(500, 700), random.randint(900, 1000))
             if event.type == pygame.QUIT:
-                running = False
+                run = False
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_f:
                     print("The hallway.. never.. came to an end...")
