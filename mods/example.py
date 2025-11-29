@@ -19,6 +19,7 @@ def main():
     time.sleep(1)
     print("You stand there, deciding whether or not to explore the area.")
     look = cho.two_options("Do you look around?", "Yes", "No")
+    # for user information, you do NOT need a new variable for each choice. You can have it as just 1 variable unless you need the information saved for something later on.
     if look == "Yes":
         print("You decide to look around and explore more.")
     if look == "No":

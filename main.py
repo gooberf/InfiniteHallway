@@ -170,11 +170,13 @@ def start():
             exit()
         elif mainMenuOption == 'dev tools':
             import floors.floor_one as f1
-            choice = choose.two_options("Start at floor one or floor two?", "1", "2")
+            choice = choose.three_options("What floor would you like to begin at?", "1", "2", "3")
             if choice == '1':
                 inventory = f1.floor_one()
             elif choice == '2':
                 inventory = f2.floor_two(inventory)
+            elif choice == '3':
+                inventory = f3.start(inventory)
         elif mainMenuOption == 'load mod':
             mods = []
             print("Scanning mods folder...")
