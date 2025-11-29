@@ -44,7 +44,7 @@ def start(inventory):
                             if not os.path.exists(f'{home}\\theHallwayThatNeverEnded'):
                                 os.mkdir(f'{home}\\theHallwayThatNeverEnded')
                             with open(f'{home}\\theHallwayThatNeverEnded\\error.txt', 'w') as f:
-                                f.write("Well, I guess, if you're reading this, you've made it to a very unfinished part of the game... this wasn't supposed to happen, and the game code itself may be vulnerable to intruders.\n\nStay safe!\n-hackrVT")
+                                f.write("Well, I guess, if you're reading this, you've made it to a very unfinished part of the game... this wasn't supposed to happen, and the game code itself may be vulnerable to intruders. We've noticed a few instances of this happening already. The only thing we know about this intruder is that they seem to have injected themselves into the game files itself to spread with each download. Their name appears to have an 'M' in the beginning. They seem to have emerald green eyes and a white hair ribbon. We'll continue investigating in the future.\n\nStay safe!\n-hackrVT")
                         print(f"======================\nMonika\n======================\n You know, while he's gone, let me tell you about how much I've missed you...")
                         time.sleep(1)
                         print(f"======================\nMonika\n======================\nActually, nevermind. It's impossible to put into words.")
