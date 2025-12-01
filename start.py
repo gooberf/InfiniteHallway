@@ -16,7 +16,7 @@ def choose(text, option1, option2, error_message="Invalid", input_func=input):
             return picked_option
         else:
             print(error_message)
-
+            
 try:
     import colorama
 except:

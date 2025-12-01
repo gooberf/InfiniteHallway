@@ -72,8 +72,8 @@ def main():
 
 **Note**: Mods run in the same Python environment as the main game, so they have access to all standard Python libraries and the game's function modules.
 
-### Disclaimer
-`save.display_stats()` has <u>**no**</u> modding support!
+> ### Disclaimer
+> `save.display_stats()` has <u>**no**</u> modding support!
 
 ### Usage
 Each function has their own usage. If you're confused, see the example mod left in `/mods`
