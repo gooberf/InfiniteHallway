@@ -17,6 +17,7 @@ import random
 import importlib.util
 import sys
 import functions.terminal as term
+import functions.modhelper as mh
 from datetime import datetime
 from rich.traceback import install
 from rich.console import Console
@@ -151,6 +152,7 @@ def start():
             os.system('cls')
         else:
             os.system('clear')
+        mh.scan()
         mainMenuOption = choose.four_options("main menu placeholder", "start", "reset config", "load mod", "dev tools")
             
 
@@ -178,7 +180,31 @@ def start():
             elif choice == '3':
                 inventory = f3.start(inventory)
         elif mainMenuOption == 'load mod':
-            mods = []
+            mods = mh.scan()
+            numMods = 0
+            for i in mods:
+                numMods += 1
+            if numMods == 1:
+                print(f"Found {numMods} mod.")
+            else:
+                print(f"Found {numMods} mods.")
+            
+            if None in mods:
+                print("No mods were found. Exiting...")
+                sys.exit()
+
+            mod = choose.list_options("Which mod would you like to inspect?", mods)
+            mh.info(mod)
+
+            confirm = choose.list_options("What would you like to do with this mod?", ["launch", "exit"])
+
+            if confirm == "launch":
+                mh.load(mod)
+            elif confirm == "exit":
+                print("goodbye!")
+                sys.exit()
+            
+            """mods = []
             print("Scanning mods folder...")
             time.sleep(random.randint(1,50)/100)
             numMods = 0
@@ -226,7 +252,7 @@ def start():
 
                 except (FileNotFoundError, AttributeError) as e:
                     print(f"Error loading or running mod: {e}")
-                
+                """
     except Exception as e:
         if e == KeyboardInterrupt:
             exit()

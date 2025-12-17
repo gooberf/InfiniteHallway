@@ -1,0 +1,11 @@
+{
+    "name": "examplemod",
+    "creator": "hackrVA",
+    "requirements": [
+        "rich",
+        "ollama",
+        "webbrowser",
+        "os",
+        "psutils"
+    ]
+}
