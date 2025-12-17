@@ -84,7 +84,18 @@ def floor_two(inventory, dev):
             elif choice == "left": # room a
                 print(f"You enter the room on your left.\n{possible_rooms[0]}\n--------------------\nThe walls close in again, and go back out. You feel a pulse as they do.\nIt's as if the room is breathing.")
                 if roomA_echo_available and not roomA_echo_taken:
-                    pass
+                    choice = cho.two_options("You see something slowly rise from the floor, a shard seemingly missing from it's structure.\nWould you like to try to slot something into it?", "yes", "no")
+                    if choice == "yes":
+                        print(f"You check your inventory, but only have {len(inventory)} item.")
+                        print("You try to slot the fragment into the chipped piece, as it starts to glow.\nThe piece gets sucked from your hand, being absorbed into the now vase-like structure.\nIt falls off of the podium, and shatters, an item falling out.\nIt's a small rod, one side red, one side blue, with a two way arrow along it vertically.")
+                        choice = cho.two_options("Would you like to test it out, to see what it does?", "yes", "no")
+                        if choice == 'yes':
+                            print("Hey, so i'm going to do this later. It'll be a gravitational device for the room with floating furniture. So uhh, yeah. :3")
+                        elif choice == 'no':
+                            print("Hey, so i'm going to do this later. It'll be a gravitational device for the room with floating furniture. So uhh, yeah. :3")
+                        #TODO HERE NEXT PLEASE
+                    elif choice == 'no':
+                        print('Not working on this yet. This will come after the entirety of the yes path is finished. Sorry :)')
                 elif not roomA_echo_available:
                     print("You look around the room, it seem squelchy as you walk around. Nothing is here now though.")
                     choice = cho.two_options('Leave?', 'yes', 'no')
@@ -114,7 +125,7 @@ def floor_two(inventory, dev):
                 _show_stats(inventory)
                 continue
         elif ver_pos == 1:
-            choice = cho.four_options("Move down the hall, into the room on your right, or into the room on your left? You can also view your stats", "down", "left", "right", "stats")
+            choice = cho.three_options("Move down the hall, into the room on your right, or into the room on your left?", "down", "left", "right")
             if choice == "down":
                 ver_pos += -1
                 print("You go back down the hall")
@@ -125,7 +136,4 @@ def floor_two(inventory, dev):
             elif choice == "right":
                 print(f"You enter the room on your right.\n{possible_rooms[1]}")
                 continue # work on this one last
-            elif choice == "stats":
-                _show_stats(inventory)
-                continue
     
