@@ -10,7 +10,7 @@ possible_rooms = [
 ]
 
 roomA_echo_available = False
-roomA_echo_taken = False
+roomA_item_taken = False
 
 roomB_fragment_taken = False
 
@@ -44,7 +44,7 @@ def _show_stats(inventory):
 
     # Update and persist save data
     saveData['inventory'] = inventory
-    saveData['A_echo_taken'] = roomA_echo_taken
+    saveData['A_echo_taken'] = roomA_item_taken
     saveData['a_echo_Available'] = roomA_echo_available
     saveData['playtime_minutes'] = minutes
     saveData['playtime_seconds'] = seconds
@@ -83,16 +83,19 @@ def floor_two(inventory, dev):
                 continue
             elif choice == "left": # room a
                 print(f"You enter the room on your left.\n{possible_rooms[0]}\n--------------------\nThe walls close in again, and go back out. You feel a pulse as they do.\nIt's as if the room is breathing.")
-                if roomA_echo_available and not roomA_echo_taken:
+                if roomA_echo_available and not roomA_item_taken:
                     choice = cho.two_options("You see something slowly rise from the floor, a shard seemingly missing from it's structure.\nWould you like to try to slot something into it?", "yes", "no")
                     if choice == "yes":
                         print(f"You check your inventory, but only have {len(inventory)} item.")
                         print("You try to slot the fragment into the chipped piece, as it starts to glow.\nThe piece gets sucked from your hand, being absorbed into the now vase-like structure.\nIt falls off of the podium, and shatters, an item falling out.\nIt's a small rod, one side red, one side blue, with a two way arrow along it vertically.")
                         choice = cho.two_options("Would you like to test it out, to see what it does?", "yes", "no")
                         if choice == 'yes':
-                            print("Hey, so i'm going to do this later. It'll be a gravitational device for the room with floating furniture. So uhh, yeah. :3")
+                            print("You begin to levitate off the ground, the room shifting as you do so.\nYou float up to the ceiling, and back down to the floor, giggling as you do so.\nAfter a few moments, you stop, landing back on the ground with a thud.")
+                            print("+1 gravitational device")
+                            inventory.append("Gravitational Device")
+                            roomA_item_taken = True
                         elif choice == 'no':
-                            print("Hey, so i'm going to do this later. It'll be a gravitational device for the room with floating furniture. So uhh, yeah. :3")
+                            print("You decide not to test it out, and put it away. \n\n+1... item?")
                         #TODO HERE NEXT PLEASE
                     elif choice == 'no':
                         print('Not working on this yet. This will come after the entirety of the yes path is finished. Sorry :)')
@@ -106,7 +109,7 @@ def floor_two(inventory, dev):
                         print("You look around a bit more, still finding nothing.")
                         print('you leave the room')
                         continue
-                elif roomA_echo_taken and roomA_echo_available:
+                elif roomA_item_taken and roomA_echo_available:
                     pass # this will be what happens when the player has the item and still comes back
             elif choice == "right": # room b
                 print(f"You enter the room on your right. \n{possible_rooms[3]}\nOn closer inspection, the mirrors show things from from the floor prior. One of the reflections is missing though.")
