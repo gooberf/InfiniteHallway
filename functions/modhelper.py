@@ -28,8 +28,9 @@ def info(mod):
             creator = data["creator"]
             dependancies = data["requirements"]
             try:
-                splashes = data["splashes"]
-            except:
+                with open(f'mods/{mod}/splashes.txt', "r") as sf:
+                    splashes = sf.readlines()
+            except FileNotFoundError:
                 splashes = None
             missingRequirements = []
             if not dependancies == []:
