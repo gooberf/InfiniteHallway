@@ -48,8 +48,9 @@ def info(mod):
                         pip_cmd = "pip"
                     reqString = " ".join(missingRequirements)
                     os.system(f"{pip_cmd} install {reqString}")
-                    print("All installs attempted. Exitting...")
-                    sys.exit()
+                    print("All installs attempted. Restarting...")
+                    from main import start
+                    start()
             print(f"{name}\n-----------------------\n[blue]Developer: {creator}\n\n[yellow]Description:\n[white]{description}\n\n[green]ID: {mod}\n\nPackages used:\n")
             for i, dependency in enumerate(dependancies, 1):
                 print(f"[blue]{i}. {dependency}")
