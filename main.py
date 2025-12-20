@@ -4,9 +4,9 @@ import functions.choices as choose
 import os
 import ollama
 import time
-import floors.floor_three as f3
+import floors.three as f3
 import functions.deleteConfig as delConfig
-import floors.floor_two as f2
+import floors.two as f2
 import functions.easyMode as em
 import functions.playtimetracker as ptt
 import functions.splash as splash
@@ -162,7 +162,7 @@ def start():
                 os.remove('floors/floor_one.py')
                 importlib.reload("floors.floor_one")
             time.sleep(0.3)
-            import floors.floor_one as f1
+            import floors.one as f1
             inventory = f1.floor_one(dev=False)
             inventory = f2.floor_two(inventory, dev=False)
             inventory = f3.start(inventory)
@@ -171,7 +171,7 @@ def start():
             print("Please restart the program to set up configuration again.")
             exit()
         elif mainMenuOption == 'dev tools':
-            import floors.floor_one as f1
+            import floors.one as f1
             choice = choose.three_options("What floor would you like to begin at?", "1", "2", "3")
             if choice == '1':
                 inventory = f1.floor_one(dev=True)
