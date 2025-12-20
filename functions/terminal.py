@@ -27,10 +27,10 @@ def choice():
     raise AttributeError("Function 'choice()' has no attribute 'display_two'")
 
 def genTraceback(msg):
-    raise ValueError(msg)
     choice()
     nextDialogue()
     continuePlay()
+    raise ValueError(msg)
 
 
 def print_traceback(msg):

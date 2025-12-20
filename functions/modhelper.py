@@ -26,6 +26,7 @@ def info(mod):
             data = json.load(f)
             name = data["name"]
             creator = data["creator"]
+            description = data['description'] if 'description' in data else "No description provided."
             dependancies = data["requirements"]
             try:
                 with open(f'mods/{mod}/splashes.txt', "r") as sf:
@@ -49,7 +50,7 @@ def info(mod):
                     os.system(f"{pip_cmd} install {reqString}")
                     print("All installs attempted. Exitting...")
                     sys.exit()
-            print(f"{name}\n-----------------------\n[blue]Developer: {creator}\n[green]ID: {mod}\n\nPackages used:\n")
+            print(f"{name}\n-----------------------\n[blue]Developer: {creator}\n\n[yellow]Description:\n[white]{description}\n\n[green]ID: {mod}\n\nPackages used:\n")
             for i, dependency in enumerate(dependancies, 1):
                 print(f"[blue]{i}. {dependency}")
     except FileNotFoundError:
@@ -64,5 +65,5 @@ def load(mod):
         else:
             splash.displaySplash()
         modimport.main()
-    except:
-        print("Failed to load mod.")
+    except Exception as e:
+        print(f"Failed to load mod: {e}")

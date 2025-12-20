@@ -4,7 +4,6 @@
 
 The Infinite Hallway supports mods! This makes the game *truly infinite*. Mods allow you to create custom game experiences, new floors, alternative storylines, or completely different adventures using the same game engine and helper functions.
 
-Mods are Python files placed in the `/mods` directory. When you select "load mod" from the main menu, the game will scan the mods folder and let you choose which mod to run. Each mod must have a `main()` function that serves as the entry point for your mod.
 
 ## Documentation
 
@@ -26,14 +25,6 @@ When developing a mod for The Infinite Hallway, you'll most likely use the follo
     - `splash.py`
         - `displaySplash()` - displays a random splash text or a custom list of splash texts
 
-## Creating a Mod
-
-To create a mod for The Infinite Hallway:
-
-1. **Create a Python file** in the `/mods` directory (e.g., `my_mod.py`)
-2. **Define a `main()` function** - This is the entry point that will be called when your mod is loaded
-3. **Import the functions you need** from the `functions/` directory
-4. **Write your mod logic** using the available helper functions
 
 ### Basic Mod Structure
 

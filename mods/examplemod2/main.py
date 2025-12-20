@@ -1,22 +1,12 @@
 import functions.choices as cho
 import functions.terminal as term
 import functions.save as save
-import functions.splash as splash
 import time
 
 def main():
-    # Display intro splash
-    custom_splashes = [
-        "Welcome to the Example Adventure!",
-        "Your journey begins now...",
-        "Prepare yourself!"
-    ]
-    splash.displaySplash(custom_splashes)
-    
-    # Load or initialize save data
     saveData = save.load()
-    mod_inventory = saveData.get('example_mod_inventory', [])
-    mod_visited = saveData.get('example_mod_visited', False)
+    mod_inventory = saveData['example_mod_inventory'] if 'example_mod_inventory' in saveData else []
+    mod_visited = saveData['example_mod_visited'] if 'example_mod_visited' in saveData else False
     
     term.clear()
     print("You find yourself in a mysterious room.")
