@@ -1,0 +1,8 @@
+{
+    "name": "example",
+    "creator": "hackrVA",
+    "description": "An example mod to for refrerence on how these mods are built~!",
+    "requirements": [
+        "time"
+    ]
+}
