@@ -199,9 +199,7 @@ def start(dev):
                                     choice = choose.two_options("Break down the boards?", "yes", "no")
                                     if choice == "yes":
                                         print(f"{Fore.GREEN}You break down the boards, breaking the axe from how old it was.{Style.RESET_ALL}")
-                                        print(f"{Fore.CYAN}You go through the gap and see something odd{Style.RESET_ALL}")
-                                        print(f"{Fore.BLUE}It looks just like the hallways from before, but you sense that it's different somehow.{Style.RESET_ALL}")
-                                        print(f"{Fore.MAGENTA}{Style.BRIGHT}You enter the 'floor two', determining which way to go next.{Style.RESET_ALL}")
+                                        print(f"{Fore.CYAN}You go through the boards and a bright light surrounds you as you escape.{Style.RESET_ALL}")
                                         inventory.remove("Rusted Axe")
                                         saveData['inventory'] = inventory
                                         saveData['floor'] = 2
