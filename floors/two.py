@@ -1,5 +1,7 @@
 import time
 import pygame
+# floor 2 is pygame???
+
 
 def start(inventory):
     player_inventory = inventory
