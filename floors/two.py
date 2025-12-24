@@ -1,14 +1,6 @@
 import time
 import pygame
 
-class Item:
-    def __init__(self, name, description, width, height, square_size):
-        self.name = name
-        self.description = description
-        selfRect = pygame.Rect((width - square_size) // 2, (height - square_size) // 2, square_size, square_size)
-    def use(self):
-        print(f"Using {self.name}: {self.description}")
-
 def start(inventory):
     player_inventory = inventory
     pygame.init()
