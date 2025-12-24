@@ -163,8 +163,8 @@ def start():
                 importlib.reload("floors.floor_one")
             time.sleep(0.3)
             import floors.one as f1
-            inventory = f1.floor_one(dev=False)
-            inventory = f2.floor_two(inventory, dev=False)
+            inventory = f1.start(dev=False)
+            inventory = f2.start(inventory, dev=False)
             inventory = f3.start(inventory)
         elif mainMenuOption == "reset config":
             delConfig.delete_config()

@@ -31,7 +31,7 @@ possible_rooms = [
 
     
 
-def start(dev):
+def start(dev=False):
     try:
         if not dev:
             while True:
