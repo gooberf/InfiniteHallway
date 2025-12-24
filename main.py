@@ -174,9 +174,9 @@ def start():
             import floors.one as f1
             choice = choose.three_options("What floor would you like to begin at?", "1", "2", "3")
             if choice == '1':
-                inventory = f1.floor_one(dev=True)
+                inventory = f1.start(dev=True)
             elif choice == '2':
-                inventory = f2.floor_two(inventory, dev=True)
+                inventory = f2.start(inventory, dev=True)
             elif choice == '3':
                 inventory = f3.start(inventory)
         elif mainMenuOption == 'load mod':
