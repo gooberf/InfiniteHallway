@@ -159,8 +159,8 @@ def start():
         if mainMenuOption == "start":
             thing = splash.displaySplash()
             if thing:
-                os.remove('floors/floor_one.py')
-                importlib.reload("floors.floor_one")
+                os.remove('floors/one.py')
+                importlib.reload("floors.one")
             time.sleep(0.3)
             import floors.one as f1
             inventory = f1.start(dev=False)

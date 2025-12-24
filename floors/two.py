@@ -1,5 +1,7 @@
 import time
 import pygame
+# floor 2 is pygame???
+
 
 def start(inventory):
     player_inventory = inventory
@@ -52,4 +54,6 @@ def start(inventory):
 
     pygame.quit()
 
-start(['rusty_axe', 'rusted_key'])
+if __name__ == "__main__":
+    start(['rusty_axe', 'rusted_key'])
+# attempt to ignore imports
