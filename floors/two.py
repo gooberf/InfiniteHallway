@@ -11,7 +11,7 @@ def start(inventory):
 
     SQUARE_SIZE = 50
     player = pygame.Rect((WIDTH - SQUARE_SIZE) // 2, (HEIGHT - SQUARE_SIZE) // 2, SQUARE_SIZE, SQUARE_SIZE)
-    SPEED = 300  # pixels per second
+    SPEED = 500  # pixels per second
 
     running = True
     while running:
