@@ -32,15 +32,6 @@ def start(inventory):
             dx -= 1
         if keys[pygame.K_d]:
             dx += 1
-        if keys[pygame.K_i]:
-            print("Using item")
-            for item in player_inventory:
-                if item == 'rusty_axe':
-                    rusty_axe = Item('Rusty Axe', 'A rusty old axe, not very useful.', WIDTH, HEIGHT, SQUARE_SIZE)
-                    rusty_axe.use()
-                elif item == 'rusted_key':
-                    rusted_key = Item('Rusted Key', 'A rusted key, might open something.', WIDTH, HEIGHT, SQUARE_SIZE)
-                    rusted_key.use()
         if keys[pygame.K_e] and pygame.Rect.colliderect(player, pygame.Rect((WIDTH - SQUARE_SIZE) // 2, (HEIGHT - SQUARE_SIZE) // 2, SQUARE_SIZE, SQUARE_SIZE)):
             # NOTE / TODO make this when the player is near an item/chest on the floor and E is pressed, it will interact/open it.
             pass
