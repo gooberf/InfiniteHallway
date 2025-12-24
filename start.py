@@ -86,8 +86,8 @@ print("Attempting to load floor files...")
 time.sleep(random.randint(1,100)/100)
 
 try:
-    import floors.floor_one
-    import floors.floor_two
+    import floors.one
+    import floors.two
     print("Loaded floors.")
 except:
     print("One or more floor files failed to load. These are CRITICAL to the game. Please re-download the game from the following link:\nhttps://github.com/gooberf/InfiniteHallway")
