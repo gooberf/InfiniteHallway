@@ -53,4 +53,3 @@ def start(inventory):
     pygame.quit()
 
 start(['rusty_axe', 'rusted_key'])
-#tehe
