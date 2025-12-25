@@ -11,3 +11,4 @@ LLMsEnabled
 __pycache__/
 .pytest_cache
 traceback.txt
+data/saves
