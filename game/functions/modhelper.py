@@ -3,8 +3,8 @@ import json
 from rich import print
 import importlib
 import sys
-import functions.splash as splash
-from functions.choices import two_options
+import game.functions.splash as splash
+from game.functions.choices import two_options
 
 splashes = []
 

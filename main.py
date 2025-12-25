@@ -1,23 +1,23 @@
 from ntpath import isdir
 import traceback
-import functions.choices as choose
+import game.functions.choices as choose
 import os
 import ollama
 import time
-import floors.three as f3
-import functions.deleteConfig as delConfig
-import floors.two as f2
-import functions.easyMode as em
-import functions.playtimetracker as ptt
-import functions.splash as splash
+import game.floors.three as f3
+import game.functions.deleteConfig as delConfig
+import game.floors.two as f2
+import game.functions.easyMode as em
+import game.functions.playtimetracker as ptt
+import game.functions.splash as splash
 import datetime
 import importlib
 import rich
 import random
 import importlib.util
 import sys
-import functions.terminal as term
-import functions.modhelper as mh
+import game.functions.terminal as term
+import game.functions.modhelper as mh
 from datetime import datetime
 from rich.traceback import install
 from rich.console import Console
@@ -160,9 +160,9 @@ def start():
             thing = splash.displaySplash()
             if thing:
                 os.remove('floors/one.py')
-                importlib.reload("floors.one")
+                importlib.reload("game.floors.one")
             time.sleep(0.3)
-            import floors.one as f1
+            import game.floors.one as f1
             inventory = f1.start(dev=False)
             inventory = f2.start(inventory, dev=False)
             inventory = f3.start(inventory)
@@ -171,7 +171,7 @@ def start():
             print("Please restart the program to set up configuration again.")
             exit()
         elif mainMenuOption == 'dev tools':
-            import floors.one as f1
+            import game.floors.one as f1
             choice = choose.three_options("What floor would you like to begin at?", "1", "2", "3")
             if choice == '1':
                 inventory = f1.start(dev=True)

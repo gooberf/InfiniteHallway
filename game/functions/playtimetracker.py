@@ -1,7 +1,7 @@
 import threading
 import signal
 import time
-import functions.save as gameSave
+import game.functions.save as gameSave
 import sys
 from typing import Tuple, Optional
 

@@ -3,7 +3,7 @@ import os
 from functions.terminal import clear
 from colorama import Fore, Style
 from rich import print
-import functions.terminal as clear_term
+import game.functions.terminal as clear_term
 
 # Initialize colorama
 colorama.init(autoreset=True)

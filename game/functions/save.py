@@ -1,6 +1,6 @@
 import json
 import os
-import functions.playtimetracker as playtimetracker
+import game.functions.playtimetracker as playtimetracker
 from colorama import Fore, Style
 
 # Get the base directory of the project (parent of functions folder)

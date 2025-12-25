@@ -1,5 +1,5 @@
 import random
-import functions.terminal as terminal
+import game.functions.terminal as terminal
 import time
 import datetime
 from datetime import datetime
