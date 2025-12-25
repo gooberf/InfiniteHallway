@@ -176,7 +176,7 @@ def start():
             if choice == '1':
                 inventory = f1.start(dev=True)
             elif choice == '2':
-                inventory = f2.start(inventory, dev=True)
+                inventory = f2.start(inventory)
             elif choice == '3':
                 inventory = f3.start(inventory)
         elif mainMenuOption == 'load mod':

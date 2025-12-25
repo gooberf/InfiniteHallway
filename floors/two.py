@@ -57,4 +57,3 @@ def start(inventory):
         pygame.display.flip()
     pygame.quit()
 
-start([])
