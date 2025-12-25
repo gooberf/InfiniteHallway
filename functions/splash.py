@@ -95,3 +95,8 @@ def displaySplash(splashes=[]):
         print(f"{Fore.MAGENTA}{Style.BRIGHT}{splash}{Style.RESET_ALL}")
     time.sleep(3)
     terminal.clear()
+
+def dump():
+     with open('splashes.txt', 'w') as sf:
+          for i in splashTexts:
+               sf.write(i + "\n")
