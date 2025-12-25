@@ -56,4 +56,3 @@ def start(inventory):
         pygame.draw.rect(screen, (255, 255, 0), chest) if not chest_opened else pygame.draw.rect(screen, (100, 100, 0), chest)
         pygame.display.flip()
     pygame.quit()
-
