@@ -1,6 +1,6 @@
 import colorama
 import os
-from functions.terminal import clear
+from game.functions.terminal import clear
 from colorama import Fore, Style
 from rich import print
 import game.functions.terminal as clear_term
