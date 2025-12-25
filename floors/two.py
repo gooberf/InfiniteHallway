@@ -27,7 +27,7 @@ def start(inventory):
 
         keys = pygame.key.get_pressed()
         dx = dy = 0
-        colliding = player.colliderect(chest)
+        colliding_with_chest = player.colliderect(chest)
         if keys[pygame.K_w]:
             dy -= 1
         if keys[pygame.K_s]:
@@ -36,7 +36,7 @@ def start(inventory):
             dx -= 1
         if keys[pygame.K_d]:
             dx += 1
-        if keys[pygame.K_e] and colliding and not chest_opened:
+        if keys[pygame.K_e] and colliding_with_chest and not chest_opened:
             inventory.append("Gold Coin")
             chest_opened = True
             print("You got a golden coin!")
