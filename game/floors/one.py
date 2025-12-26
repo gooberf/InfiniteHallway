@@ -1,10 +1,10 @@
 import random
-import functions.choices as choose
-import functions.save as gameSave
+import game.functions.choices as choose
+import game.functions.save as gameSave
 import functions.playtimetracker as playtimetracker
 import os
 import time
-import functions.terminal as terminal
+import game.functions.terminal as terminal
 from colorama import Fore, Style
 
 def _ask_load_save():
