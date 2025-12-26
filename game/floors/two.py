@@ -2,7 +2,7 @@ import time
 import pygame
 import random
 import getpass
-# floor 2 is pygame???
+
 possible_names = ["the hallway never ends", 'there has to be an end', f'goodluck, {getpass.getuser()}', 'heh... youre not escaping']
 
 def start(inventory):
