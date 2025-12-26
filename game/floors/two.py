@@ -1,8 +1,9 @@
 import time
 import pygame
 import random
+import getpass
 # floor 2 is pygame???
-possible_names = ["the hallway never ends", 'there has to be an end', 'goodluck, user', 'heh... youre not escaping']
+possible_names = ["the hallway never ends", 'there has to be an end', f'goodluck, {getpass.getuser()}', 'heh... youre not escaping']
 
 def start(inventory):
     print(inventory) if len(inventory) > 0 else print("Inventory is empty.")
@@ -29,19 +30,41 @@ def start(inventory):
 
         keys = pygame.key.get_pressed()
         dx = dy = 0
+        walls = [wall_1]
 
         ## COLLISION DETECTION ##
         colliding_with_chest = player.colliderect(chest)
-        colliding_with_wall_1 = player.colliderect(wall_1)
+        
+        colliding_with_wall_bottom = (
+    player.colliderect(wall_1)
+    and player.top <= wall_1.bottom
+    
+        )
+        colliding_with_wall_top = (
+    player.colliderect(wall_1)
+    and player.top <= wall_1.top
+        )
+
+        colliding_with_wall_left = (
+    player.colliderect(wall_1)
+    and player.left <= wall_1.left
+        )
+
+        colliding_with_wall_right = (
+    player.colliderect(wall_1)
+    and player.right >= wall_1.right
+        )
         #########################
+        speed = 1
+        
         if keys[pygame.K_w]:
-            dy -= 1 if not colliding_with_wall_1 else -1
+            dy -= 1 if not colliding_with_wall_bottom else 0
         if keys[pygame.K_s]:
-            dy += 1 if not colliding_with_wall_1 else -1
+            dy += 1 if not colliding_with_wall_top else 0
         if keys[pygame.K_a]:
-            dx -= 1 if not colliding_with_wall_1 else -1
+            dx -= 1 if not colliding_with_wall_right else 0
         if keys[pygame.K_d]:
-            dx += 1 if not colliding_with_wall_1 else -1
+            dx += 1 if not colliding_with_wall_left else 0
         if keys[pygame.K_e] and colliding_with_chest and not chest_opened:
             inventory.append("Gold Coin")
             chest_opened = True
