@@ -20,16 +20,15 @@ def run(cmd):
 def continuePlay():
     raise ValueError("Failed to continue playing.")
 
-def nextDialogue():
-    raise TypeError("Unexpected indent in terminal.py, line 24")
+def nextDialogue(msg):
+    raise ValueError(msg)
+    raise TypeError("Unexpected indent on line 24")
 
-def choice():
-    raise AttributeError("Function 'choice()' has no attribute 'display_two'")
+def choice(msg):
+    nextDialogue(msg)
 
 def genTraceback(msg):
-    choice()
-    nextDialogue()
-    continuePlay()
+    choice(msg)
     raise ValueError(msg)
 
 

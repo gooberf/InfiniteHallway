@@ -1,6 +1,7 @@
-import functions.choices as cho
-import functions.terminal as term
+import game.functions.choices as cho
+import game.functions.terminal as term
 import time
+from random import randint
 
 def main():
     print("You wake up, in a strange builing.")
@@ -24,6 +25,10 @@ def main():
     if opendr == "yes":
         print("You carefully reach for the doorknob.")
         time.sleep(1)
-        print("You open the door, revealing a-")
+        print("You open the door, revealing a", end="")
+        for i in range(randint(10, 499)):
+            print("a", end="")
+            time.sleep(0.01)
+        print("a")
         term.logTraceback("Hm.. how do I fix this..? Do I continue writing the example mod, or am I too tired from writing modding docs? We will never know. If you were actually interested in learing the modding for this game, just read modding.md")
         exit()
