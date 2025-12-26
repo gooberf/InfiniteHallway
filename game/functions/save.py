@@ -5,7 +5,8 @@ from colorama import Fore, Style
 
 # Get the base directory of the project (parent of functions folder)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SAVES_DIR = os.path.join(BASE_DIR, 'data/saves')
+# SAVES_DIR = os.path.join(BASE_DIR, 'data/saves')
+SAVES_DIR = 'data/saves'
 SAVE_FILE = os.path.join(SAVES_DIR, 'save.json')
 
 def save(data):
