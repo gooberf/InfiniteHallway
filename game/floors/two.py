@@ -38,7 +38,7 @@ def start(inventory):
         colliding_with_wall_bottom = is_colliding.bottom(walls, player)
         colliding_with_wall_top = is_colliding.top(walls, player)
         colliding_with_wall_left = is_colliding.left(walls, player)
-        colliding_with_wall_right = is_colliding.right()
+        colliding_with_wall_right = is_colliding.right(walls, player)
         #########################
         speed = 1
         
