@@ -9,7 +9,7 @@ def bottom(walls, player):
     for i in walls:
         return (
     player.colliderect(i)
-    and player.bottom <= i.bottom
+    and player.bottom >= i.bottom
         )
 
 def left(walls, player):
@@ -23,6 +23,6 @@ def right(walls, player):
     for i in walls:
         return (
     player.colliderect(i)
-    and player.right <= i.right
+    and player.right >= i.right
         )
 
