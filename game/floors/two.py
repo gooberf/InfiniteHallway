@@ -3,9 +3,8 @@ import pygame
 import random
 import getpass
 
-possible_names = ["the hallway never ends", 'there has to be an end', f'goodluck, {getpass.getuser()}', 'heh... youre not escaping']
-
 def start(inventory):
+    possible_names = ["the hallway never ends", 'there has to be an end', f'goodluck, {getpass.getuser()}', 'heh... youre not escaping']
     print(inventory) if len(inventory) > 0 else print("Inventory is empty.")
     pygame.init()
     WIDTH, HEIGHT = 640, 480
@@ -18,6 +17,7 @@ def start(inventory):
     SPEED = 500  # pixels per second
     chest = pygame.Rect(100, 100, 40, 40)
     wall_1 = pygame.Rect(200, 150, 300, 20)
+    walls = [wall_1]
 
     running = True
     while running:
@@ -30,7 +30,6 @@ def start(inventory):
 
         keys = pygame.key.get_pressed()
         dx = dy = 0
-        walls = [wall_1]
 
         ## COLLISION DETECTION ##
         colliding_with_chest = player.colliderect(chest)
@@ -87,4 +86,3 @@ def start(inventory):
         pygame.display.flip()
     pygame.quit()
 
-start([])
