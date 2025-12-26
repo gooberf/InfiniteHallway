@@ -1,7 +1,7 @@
 import random
 import game.functions.choices as choose
 import game.functions.save as gameSave
-import functions.playtimetracker as playtimetracker
+import game.functions.playtimetracker as playtimetracker
 import os
 import time
 import game.functions.terminal as terminal
