@@ -1,20 +1,22 @@
 import time
 import pygame
+import random
 # floor 2 is pygame???
-
+possible_names = ["the hallway never ends", 'there has to be an end', 'goodluck, user', 'heh... youre not escaping']
 
 def start(inventory):
     print(inventory) if len(inventory) > 0 else print("Inventory is empty.")
     pygame.init()
     WIDTH, HEIGHT = 640, 480
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("Red Square - WASD movement")
+    pygame.display.set_caption(random.choice(possible_names))
     clock = pygame.time.Clock()
     chest_opened = False
     SQUARE_SIZE = 50
     player = pygame.Rect((WIDTH - SQUARE_SIZE) // 2, (HEIGHT - SQUARE_SIZE) // 2, SQUARE_SIZE, SQUARE_SIZE)
     SPEED = 500  # pixels per second
     chest = pygame.Rect(100, 100, 40, 40)
+    wall_1 = pygame.Rect(200, 150, 300, 20)
 
     running = True
     while running:
@@ -27,15 +29,19 @@ def start(inventory):
 
         keys = pygame.key.get_pressed()
         dx = dy = 0
+
+        ## COLLISION DETECTION ##
         colliding_with_chest = player.colliderect(chest)
+        colliding_with_wall_1 = player.colliderect(wall_1)
+        #########################
         if keys[pygame.K_w]:
-            dy -= 1
+            dy -= 1 if not colliding_with_wall_1 else -1
         if keys[pygame.K_s]:
-            dy += 1
+            dy += 1 if not colliding_with_wall_1 else -1
         if keys[pygame.K_a]:
-            dx -= 1
+            dx -= 1 if not colliding_with_wall_1 else -1
         if keys[pygame.K_d]:
-            dx += 1
+            dx += 1 if not colliding_with_wall_1 else -1
         if keys[pygame.K_e] and colliding_with_chest and not chest_opened:
             inventory.append("Gold Coin")
             chest_opened = True
@@ -54,5 +60,8 @@ def start(inventory):
         screen.fill((30, 30, 30))
         pygame.draw.rect(screen, (255, 0, 0), player)
         pygame.draw.rect(screen, (255, 255, 0), chest) if not chest_opened else pygame.draw.rect(screen, (100, 100, 0), chest)
+        pygame.draw.rect(screen, (100, 100, 100), wall_1)
         pygame.display.flip()
     pygame.quit()
+
+start([])
