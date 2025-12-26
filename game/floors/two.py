@@ -1,6 +1,7 @@
 import time
 import pygame
 import random
+import game.functions.is_colliding as is_colliding
 import getpass
 
 def start(inventory):
@@ -34,25 +35,10 @@ def start(inventory):
         ## COLLISION DETECTION ##
         colliding_with_chest = player.colliderect(chest)
         
-        colliding_with_wall_bottom = (
-    player.colliderect(wall_1)
-    and player.top <= wall_1.bottom
-    
-        )
-        colliding_with_wall_top = (
-    player.colliderect(wall_1)
-    and player.top <= wall_1.top
-        )
-
-        colliding_with_wall_left = (
-    player.colliderect(wall_1)
-    and player.left <= wall_1.left
-        )
-
-        colliding_with_wall_right = (
-    player.colliderect(wall_1)
-    and player.right >= wall_1.right
-        )
+        colliding_with_wall_bottom = is_colliding.bottom(walls, player)
+        colliding_with_wall_top = is_colliding.top(walls, player)
+        colliding_with_wall_left = is_colliding.left(walls, player)
+        colliding_with_wall_right = is_colliding.right()
         #########################
         speed = 1
         
