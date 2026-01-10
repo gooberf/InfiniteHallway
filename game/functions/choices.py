@@ -87,7 +87,9 @@ def list_options(text, options_list, error_message="Invalid", input_func=input):
     while True:
         if incorrect:
             print(f"[red]You've entered an invalid response!")
-        options_display = '\n'.join([f'{Fore.GREEN}{opt}{Style.RESET_ALL}' for opt in options_list])
+        # display the options in a list format
+        # with the index of the option + 1
+        options_display = '\n'.join([f'{Fore.GREEN}{i + 1}. {opt}{Style.RESET_ALL}' for i, opt in enumerate(options_list)])
         
         picked_option = input_func(f'{Fore.CYAN}{"=" * 32}{Style.RESET_ALL}\n{Fore.YELLOW}{text}{Style.RESET_ALL}\n{Fore.CYAN}{"-" * 32}{Style.RESET_ALL}\n{options_display}\n{Fore.CYAN}{"=" * 32}{Style.RESET_ALL}\n').lower()
         
@@ -95,6 +97,16 @@ def list_options(text, options_list, error_message="Invalid", input_func=input):
             clear_term.clear()
             index = options_lower.index(picked_option)
             return options_list[index]
+        # check if what was entered is a number and if it is, return the option at that index
+        elif picked_option.isdigit():
+            index = int(picked_option)
+            if 1 <= index <= len(options_list):
+                clear_term.clear()
+                index -= 1
+                return options_list[index]
+            else:
+                print(f"[red]Invalid option number! Please enter a number between 1 and {len(options_list)}.")
+                continue
         else:
             clear()
             incorrect = True
