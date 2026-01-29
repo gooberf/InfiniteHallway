@@ -25,7 +25,7 @@ def run():
         'test_key': 'test_value',
         'good_code': 'god i wish',
         'another_key': 12345,
-        '500_instances_of_the_word_key': 'key ' * 9999999
+        '500_instances_of_the_word_key': 'key ' * 500
         }
     save_mod.save(data)
     loaded = save_mod.load()
