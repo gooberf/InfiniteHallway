@@ -171,22 +171,14 @@ def start():
             print("Please restart the program to set up configuration again.")
             exit()
         elif mainMenuOption == 'dev tools':
-            choice = choose.list_options("What would you like to do?", ["load floor", "convert save to json", "use old save format"])
-            if choice == "convert save to json":
-                import game.functions.save
-                game.functions.save.convert_save_to_json(slot=int(input("Enter slot number to convert (default 1): ") or 1))
-            elif choice == "use old save format":
-                import game.functions.save
-                inventory = game.functions.save.load_legacy()
-            elif choice == "load floor":
-                import game.floors.one as f1
-                choice = choose.three_options("What floor would you like to begin at?", "1", "2", "3")
-                if choice == '1':
-                    inventory = f1.start(dev=True)
-                elif choice == '2':
-                    inventory = f2.start(inventory)
-                elif choice == '3':
-                    inventory = f3.start(inventory)
+            import game.floors.one as f1
+            choice = choose.three_options("What floor would you like to begin at?", "1", "2", "3")
+            if choice == '1':
+                inventory = f1.start(dev=True)
+            elif choice == '2':
+                inventory = f2.start(inventory)
+            elif choice == '3':
+                inventory = f3.start(inventory)
         elif mainMenuOption == 'load mod':
             mods = mh.scan()
             numMods = 0
