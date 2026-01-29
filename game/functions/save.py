@@ -9,7 +9,7 @@ import pickle
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SAVES_DIR = os.path.join(BASE_DIR, 'data/saves')
 SAVES_DIR = 'data/saves'
-SAVE_FILE = os.path.join(SAVES_DIR, '01.infsav')
+SAVE_FILE = os.path.join(SAVES_DIR, '01.infsv')
 
 def getinfo(peram):
     """Retrieve information from game/info.json"""
@@ -40,8 +40,8 @@ def save(data, mod=None, slot=1):
     if target_mod:
         saves_dir = os.path.join('mods', target_mod, 'saves')
         # format slot as two-digit number
-        # save_file = os.path.join(saves_dir, '01.infsav')
-        save_file = os.path.join(saves_dir, "01.infsav")
+        # save_file = os.path.join(saves_dir, '01.infsv')
+        save_file = os.path.join(saves_dir, "01.infsv")
     else:
         saves_dir = SAVES_DIR
         save_file = SAVE_FILE
@@ -59,7 +59,7 @@ def load(mod=None, slot=1):
     """Load save data. If `mod` provided or detected, loads that mod's save."""
     target_mod = mod if mod is not None else _detect_mod_from_stack()
     if target_mod:
-        save_file = os.path.join('mods', target_mod, 'saves', '01.infsav')
+        save_file = os.path.join('mods', target_mod, 'saves', '01.infsv')
     else:
         save_file = SAVE_FILE
 
@@ -86,7 +86,7 @@ def convert_save_to_json(mod=None, slot=1):
     try:
         target_mod = mod if mod is not None else _detect_mod_from_stack()
         if target_mod:
-            save_file = os.path.join('mods', target_mod, 'saves', '01.infsav')
+            save_file = os.path.join('mods', target_mod, 'saves', '01.infsv')
             json_save_file = os.path.join('mods', target_mod, 'saves', 'save.json')
         else:
             save_file = SAVE_FILE
