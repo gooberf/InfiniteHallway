@@ -2,40 +2,55 @@ import json
 import os
 import game.functions.playtimetracker as playtimetracker
 from colorama import Fore, Style
+import pickle
 
 # Get the base directory of the project (parent of functions folder)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SAVES_DIR = os.path.join(BASE_DIR, 'data/saves')
 SAVES_DIR = 'data/saves'
-SAVE_FILE = os.path.join(SAVES_DIR, 'save.json')
+SAVE_FILE = os.path.join(SAVES_DIR, '01.infsav')
+
+def getinfo(peram):
+    """Retrieve information from game/info.json"""
+    info_file = os.path.join(BASE_DIR, 'game', 'info.json')
+    try:
+        with open(info_file, 'r') as f:
+            info = json.load(f)
+        return info.get(peram, None)
+    except Exception:
+        return None
+
 
 def save(data):
     if not os.path.exists(SAVES_DIR):
         os.makedirs(SAVES_DIR)
-    with open(SAVE_FILE, 'w') as f:
-        json.dump(data, f, indent=4)
+    with open(SAVE_FILE, 'wb') as f:
+        # Build header bytes safely: ensure iteration is string and encoded to bytes
+        iteration = getinfo("saveIteration")
+        iteration_bytes = str(iteration if iteration is not None else "").encode('utf-8')
+        f.write(b"InfiniteHallway Save Iteration" + iteration_bytes)  # magic header
+        pickle.dump(data, f)
 
 def load():
     try:
-        with open(SAVE_FILE, 'r') as f:
-            data = json.load(f)
+        with open(SAVE_FILE, 'rb') as f:
+            # Read the same number of bytes as written for the header
+            iteration = getinfo("saveIteration")
+            iteration_bytes = str(iteration if iteration is not None else "").encode('utf-8')
+            header_len = len(b"InfiniteHallway Save Iteration") + len(iteration_bytes)
+            header = f.read(header_len)
+            if header != b"InfiniteHallway Save Iteration" + iteration_bytes:
+                raise ValueError("Invalid save file")
+            data = pickle.load(f)
         return data
     except FileNotFoundError:
-        # Return default save data structure
         return {
             'inventory': [],
             'bought_key': False,
             'door_open': False,
             'floor': 1
         }
-
-# read() isn't relevant, as it just prints the file, so i just commented it out
-
-#def read():
-#    with open(SAVE_FILE, 'r') as f:
-#       data = json.load(f)
-#        print(data)
-
+    
 def display_stats(inventory=None):
     """
     Display formatted player statistics.
@@ -122,3 +137,12 @@ def display_stats(inventory=None):
         print(f"{Fore.CYAN}Playtime: {Fore.WHITE}{mins}m {secs}s{Style.RESET_ALL}")
     
     print(f"{Fore.CYAN}{'=' * 50}{Style.RESET_ALL}")
+    
+def migrate_save():
+    """Migrate old JSON save to new pickle format."""
+    old_save_file = os.path.join(SAVES_DIR, 'save.json')
+    if os.path.exists(old_save_file):
+        with open(old_save_file, 'r') as f:
+            data = json.load(f)
+        save(data)
+        os.remove(old_save_file)
