@@ -13,6 +13,8 @@ def _ask_load_save():
             while True:
                 choice = input("Do you want to load your save? (yes/no): ").strip().lower()
                 if choice == "yes":
+                    print("Save loaded successfully.")
+                    # return gameSave.load(slot=int(input("Enter slot number to load (default 1): ") or 1))
                     return gameSave.load()
                 if choice == "no":
                     print("Starting fresh :)")
@@ -237,6 +239,7 @@ def start(dev=False):
             saveData['door_open'] = door_open
             saveData['floor'] = 1
             try:
+                # gameSave.save(saveData, slot=int(input("Enter slot number to save (default 1): ") or 1))
                 gameSave.save(saveData)
             except Exception as e:
                 print(f"Failed to save game: {e}")
