@@ -108,14 +108,6 @@ except:
         print("Quitting...")
         exit()
 
-for i in os.listdir('data/saves'):
-    if i.endswith('.json'):
-        print("Old save file detected. Attempting migration...")
-        time.sleep(random.randint(1,100)/100)
-        import game.functions.save
-        game.functions.save.migrate_save()
-        print("Migration complete.")
-
 mods = 0
 print("Scanning for mods...")
 time.sleep(random.randint(1,100)/100)
